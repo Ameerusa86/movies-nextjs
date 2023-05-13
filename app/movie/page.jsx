@@ -1,6 +1,5 @@
 import React from "react";
 import Movies from "../api/Movies";
-import Card from "../components/Card/Card";
 
 const MoviesPage = ({ movie }) => {
   return (

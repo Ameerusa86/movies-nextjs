@@ -33,7 +33,7 @@ const Navbar = () => {
     },
     {
       name: "Movies",
-      link: "/movies",
+      link: "/movie",
       icon: <GiFilmStrip />,
     },
     {

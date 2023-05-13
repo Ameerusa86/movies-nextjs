@@ -33,10 +33,10 @@ module.exports = {
         cover: "cover",
         contain: "contain",
         "50%": "50%",
-        "400%":"400%",
+        "400%": "400%",
         16: "4rem",
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

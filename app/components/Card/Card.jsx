@@ -20,15 +20,16 @@ const Card = ({ Movies }) => {
   const imageUrl = IMG_URL + (poster_path || backdrop_path);
 
   return (
-    <Link href={`/movie/${id}`} className="">
-      <div class="container">
-        <div class="wrapper">
+    <Link href={`/movie/${id}`} className="link">
+      <div className="container">
+        <div className="wrapper hover:opacity-80">
           <div
-            class="banner-image"
+            className="banner-image "
             style={{ backgroundImage: `url(${imageUrl})` }}
           ></div>
           <h1> {title}</h1>
-          <p>{release_date}</p>
+          <p className="line-clamp-3">{overview}</p>
+          <p>Release Date {release_date}</p>
         </div>
       </div>
     </Link>
