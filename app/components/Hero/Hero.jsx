@@ -1,11 +1,13 @@
-import React from 'react'
+import Movies from "@/app/api/Movies";
+import React from "react";
 
-const Hero = () => {
+const Hero = ({title}) => {
   return (
-    <div className='p-7'>
-        <h1 className='text-4xl font-bold text-gray-800'>Hero Section</h1>
+    <div className="w-full bg-gray-600">
+      <h1>Hero</h1>
+      
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
