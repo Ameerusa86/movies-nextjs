@@ -2,7 +2,7 @@ import React from "react";
 
 const API_KEY = process.env.API_KEY;
 
-const Movies = async () => {
+const Movies = async ({ title, poster, rating, description, releaseDate }) => {
   const IMG_URL = "https://image.tmdb.org/t/p/w500/";
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`,
@@ -14,6 +14,8 @@ const Movies = async () => {
   return (
     <div>
       {movies.map((movie) => {
+        const { id, title, poster, vote_average, overview, release_date } =
+          movie;
         return (
           <div
             key={movie.id}
@@ -23,7 +25,11 @@ const Movies = async () => {
             description={movie.overview}
             releaseDate={movie.release_date}
           >
-            <p>{movie.title}</p>
+            <h1>{title}</h1>
+            <p>{vote_average}</p>
+            <p>{overview}</p>
+            <p>{release_date}</p>
+            <img src={poster} alt="" />
           </div>
         );
       })}
