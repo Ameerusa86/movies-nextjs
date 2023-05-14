@@ -1,5 +1,5 @@
 import React from "react";
-import Movies from "../api/Movies";
+import Movies from '../../api/Movies'
 
 const MoviesPage = ({ movie }) => {
   return (
