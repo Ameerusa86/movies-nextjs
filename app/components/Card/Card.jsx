@@ -1,7 +1,5 @@
 import React from "react";
 import "./Card.css";
-
-import Image from "next/image";
 import Link from "next/link";
 
 const Card = ({ Movies }) => {

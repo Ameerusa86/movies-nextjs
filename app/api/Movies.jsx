@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "../components/Card/Card";
-import Image from "next/image";
 
 const API_KEY = process.env.API_KEY;
 
@@ -12,8 +11,6 @@ const Movies = async ({ title, poster, rating, description, releaseDate }) => {
   );
   const data = await response.json();
   const movies = data.results;
-
-  console.log(movies);
 
   return (
     <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-w-screen-2xl mx-auto py-4 px-4 gap-3">
@@ -27,7 +24,7 @@ const Movies = async ({ title, poster, rating, description, releaseDate }) => {
           poster_path,
           backdrop_path,
         } = movie;
-        const imageUrl = IMG_URL + (poster_path || backdrop_path);
+        {/* const imageUrl = IMG_URL + (poster_path || backdrop_path); */}
 
         return (
           <>
@@ -39,6 +36,4 @@ const Movies = async ({ title, poster, rating, description, releaseDate }) => {
   );
 };
 
-
 export default Movies;
-

@@ -17,9 +17,20 @@ import logo from "../../../public/Asset/logo.png";
 
 // Styles
 import "./Navbar.css";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [open, setOpen] = useState(true);
+  const [search, setSearch] = useState("");
+
+  const router = useRouter()
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!search) return;
+    router.push(`/search/${search}`);
+  }
+
   const sideMenuItems = [
     {
       name: "Home",
@@ -95,12 +106,16 @@ const Navbar = () => {
               !open && "hidden"
             } `}
           >
-            <input
-              type={"search"}
-              className="form__field"
-              placeholder="Search"
-              required=""
-            />
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                className="form__field"
+                placeholder="Search"
+                required
+                onChange={(e) => setSearch(e.target.value)}
+                value={search}
+              />
+            </form>
             <label for="name" className="form__label">
               Search
             </label>
