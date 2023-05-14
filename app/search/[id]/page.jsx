@@ -34,7 +34,7 @@ const SearchPage = async ({ params, movie }) => {
         } = result;
         const imageUrl = IMG_URL + (poster_path || backdrop_path);
         return (
-          <Link href={`/movie/${id}`} className="link">
+          <Link href={`/movie/${id}`} className="link" key={id}>
             <div className="container">
               <div className="wrapper hover:opacity-80">
                 <div
