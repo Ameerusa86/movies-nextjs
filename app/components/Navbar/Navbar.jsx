@@ -49,7 +49,7 @@ const Navbar = () => {
     },
     {
       name: "TV Shows",
-      link: "/tvshows",
+      link: "/tv",
       icon: <MdOutlineSlideshow />,
     },
     {
