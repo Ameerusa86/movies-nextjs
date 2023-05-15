@@ -5,7 +5,7 @@ const DetailsPage = async ({ params }) => {
   const IMG_URL = "https://image.tmdb.org/t/p/original/";
   const { id } = params;
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}`, {next:{revalidate:60}}
   );
   const data = await res.json();
   const {
@@ -22,7 +22,7 @@ const DetailsPage = async ({ params }) => {
 
   return (
     <div
-      className="grid place-content-center w-full h-screen relative"
+      className="grid place-content-center w-full h-screen relative "
       style={{
         backgroundImage: `url(${imageBackdrop})`,
         backgroundSize: "cover",
@@ -33,7 +33,7 @@ const DetailsPage = async ({ params }) => {
         textAlign: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-black opacity-70 "></div>
 
       <div className="flex flex-col max-w-6xl md:space-x-6 z-50">
         <Image

@@ -13,7 +13,9 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        "dark-purple": "#081A51",
+        // "dark-purple": "#081A51",
+        "dark-purple": "#1d2f3e",
+
         "dark-blue": "#003399",
         "dark-green": "#009900",
         "dark-red": "#990000",
@@ -38,5 +40,6 @@ module.exports = {
       },
     },
   },
+  darkMode: "class",
   plugins: [require("@tailwindcss/line-clamp")],
 };

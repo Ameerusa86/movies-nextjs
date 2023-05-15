@@ -18,12 +18,13 @@ import logo from "../../../public/Asset/logo.png";
 // Styles
 import "./Navbar.css";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Navbar = () => {
   const [open, setOpen] = useState(true);
   const [search, setSearch] = useState("");
 
-  const router = useRouter()
+  const router = useRouter();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -59,11 +60,11 @@ const Navbar = () => {
     },
   ];
   return (
-    <div className="flex">
+    <div className="flex fixed z-30">
       <div
         className={`bg-dark-purple h-screen p-5 pt-8 ${
           open ? "w-72" : "w-20"
-        } relative duration-500`}
+        } ${open ? "opacity-70" : "opacity-100"}  relative duration-500`}
       >
         <AiOutlineArrowLeft
           className={`bg-white text-dark-purple text-3xl rounded-full absolute -right-3 top-4 border border-dark-purple cursor-pointer ${
@@ -125,23 +126,25 @@ const Navbar = () => {
           <ul className="pt-8">
             {sideMenuItems.map((item, index) => (
               <>
-                <li
-                  onClick={() => setOpen(!open)}
-                  key={index}
-                  className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2"
-                >
-                  <span className="text-2xl block float-left ">
-                    {item.icon}
-                  </span>
-                  <a
-                    href={item.link}
-                    className={`text-white hover:text-dark-purple transition duration-500 ease-in-out ${
-                      !open && "opacity-0"
-                    }`}
+                <Link href={item.link}>
+                  <li
+                    onClick={() => setOpen(!open)}
+                    key={index}
+                    className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2"
                   >
-                    {item.name}
-                  </a>
-                </li>
+                    <span className="text-3xl block float-left ">
+                      {item.icon}
+                    </span>
+                    <a
+                      href={item.link}
+                      className={`text-white transition duration-500 ease-in-out ${
+                        !open && "opacity-0"
+                      }`}
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                </Link>
               </>
             ))}
           </ul>

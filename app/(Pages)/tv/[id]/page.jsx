@@ -34,7 +34,7 @@ const TvShowsDetails = async ({ params }) => {
         textAlign: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-black opacity-60"></div>
 
       <div className="flex flex-col max-w-6xl md:space-x-6 z-50">
         <Image
