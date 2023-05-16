@@ -26,5 +26,3 @@ const Movies = async () => {
 };
 
 export default Movies;
-
-// Movies={movie}
