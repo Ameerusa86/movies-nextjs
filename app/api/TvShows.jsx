@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "../components/Card/Card";
-import Link from "next/link";
 
 const API_KEY = process.env.API_KEY;
 

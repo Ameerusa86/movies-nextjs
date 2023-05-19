@@ -1,12 +1,12 @@
 import React from "react";
-import Movies from '../../api/Movies'
+import Movies from "../../api/Movies";
 import Navbar from "@/app/components/Navbar/Navbar";
 
 const MoviesPage = ({ movie }) => {
   return (
     <div>
-    <Navbar/>
-      <Movies Movies={movie}/>
+      <Navbar />
+      <Movies Movies={movie} />
     </div>
   );
 };

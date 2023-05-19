@@ -62,7 +62,7 @@ const TvShowsDetails = async ({ params }) => {
           </p>
           <p className="mb-3">
             <span className="text-red-700 font-bold">Rating:</span>
-            {vote_average === null ? "N/A" : vote_average.toFixed(1)}
+            {vote_average === null ? "N/A" : vote_average}
           </p>
         </div>
       </div>
