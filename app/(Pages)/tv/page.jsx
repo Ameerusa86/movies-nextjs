@@ -1,11 +1,11 @@
 import React from "react";
 import TvShows from "../../api/TvShows";
-import Navbar from "@/app/components/Navbar/Navbar";
+import TopNavbar from "@/app/components/Navbar/TopNavbar";
 
 const TvShowsPage = ({ tvshow }) => {
   return (
     <div>
-    <Navbar/>
+      <TopNavbar />
       <TvShows TvShows={tvshow} />
     </div>
   );

@@ -5,7 +5,7 @@ import TopNavbar from "@/app/components/Navbar/TopNavbar";
 const MoviesPage = ({ movie }) => {
   return (
     <div>
-      <TopNavbar/>
+      <TopNavbar />
       <Movies Movies={movie} />
     </div>
   );
