@@ -13,11 +13,11 @@ const Movies = async () => {
   const movies = data.results;
 
   return (
-    <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-w-screen-2xl mx-auto py-4 px-4 gap-3">
+    <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-w-screen-2xl mx-auto py-4 px-4 gap-3 ">
       {movies.map((movie, id) => {
         return (
           <>
-            <Card key={id} item={movie} media_type="movie" />
+            <Card key={id} item={movie} media_type="movie"/>
           </>
         );
       })}

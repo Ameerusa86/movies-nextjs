@@ -1,11 +1,11 @@
 import React from "react";
 import Movies from "../../api/Movies";
-import Navbar from "@/app/components/Navbar/Navbar";
+import TopNavbar from "@/app/components/Navbar/TopNavbar";
 
 const MoviesPage = ({ movie }) => {
   return (
     <div>
-      <Navbar />
+      <TopNavbar/>
       <Movies Movies={movie} />
     </div>
   );

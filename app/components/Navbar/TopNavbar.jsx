@@ -1,132 +1,107 @@
 "use client";
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FiMenu, FiX } from "react-icons/fi";
-import "./TopNavbar.css";
-import logo from "../../../public/Asset/logo.png";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import logo from '../../../public/Asset/logo.png'
+import {HiOutlineMenu} from "react-icons/hi";
 
-const TopNavbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+export default function Navigation() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-  const menuVariants = {
-    closed: {
-      x: "-100%",
-      opacity: 0,
-    },
-    open: {
-      x: 0,
-      opacity: 1,
-    },
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const isTop = window.scrollY === 0;
+      setIsScrolled(!isTop);
+    };
 
-  const menuTransition = {
-    duration: 0.3,
-  };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-  const buttonVariants = {
-    open: {
-      rotate: 45,
-    },
-    closed: {
-      rotate: 0,
-    },
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 font-Righeous shadow-lg fixed z-50 w-full">
+    <nav
+      className={`bg-white border-gray-200 dark:bg-gray-900 font-Righeous tracking-widest	z-50 ${
+        isScrolled ? "sticky top-0 shadow-md" : ""
+      }`}
+    >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link href="/home" className="flex items-center">
-          <Image src={logo} width={75} height={75} alt="Logo" />
+        <a href="https://flowbite.com/" className="flex items-center">
+          <Image src={logo} alt="Flowbite Logo" width={80} height={80} />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            CINNEMA UNIVERSE
+            Cinema Universe
           </span>
-        </Link>
-        <motion.button
-          type="button"
-          className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-default"
-          aria-expanded={isMenuOpen}
-          onClick={toggleMenu}
-          variants={buttonVariants}
-          animate={isMenuOpen ? "open" : "closed"}
+        </a>
+        <div className="flex items-center md:order-2">{/* User Button */}</div>
+        <div className="flex items-center">
+          <button
+            type="button"
+            className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100"
+            aria-controls="mobile-menu-2"
+            aria-expanded={isMobileMenuOpen ? "true" : "false"}
+            onClick={toggleMobileMenu}
+          >
+            <span className="sr-only">Open main menu</span>
+            <HiOutlineMenu size={25}/>
+          </button>
+        </div>
+        {/* Mobile Menu */}
+        <div
+          className={`items-center justify-between w-full md:flex md:w-auto md:order-1 transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? "block" : "hidden"
+          }`}
+          id="mobile-menu-2"
         >
-          <span className="sr-only">Toggle menu</span>
-          {isMenuOpen ? (
-            <FiX className="w-6 h-6" />
-          ) : (
-            <FiMenu className="w-6 h-6" />
-          )}
-        </motion.button>
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              key="sideMenu"
-              initial="closed"
-              animate="open"
-              exit="closed"
-              variants={menuVariants}
-              transition={menuTransition}
-              className="w-full md:block md:w-auto"
-              id="navbar-default"
-            >
-              <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                  <Link
-                    href="/home"
-                    className="block py-2 pl-3 pr-4 md:p-0 text-black hover:text-red-600"
-                    activeClassName="text-red-600"
-                  >
-                    HOME
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="block py-2 pl-3 pr-4 md:p-0 text-black hover:text-red-600"
-                    activeClassName="text-red-600"
-                  >
-                    ABOUT
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/movie"
-                    className="block py-2 pl-3 pr-4 md:p-0 text-black hover:text-red-600"
-                    activeClassName="text-red-600"
-                  >
-                    MOVIES
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/tv"
-                    className="block py-2 pl-3 pr-4 md:p-0 text-black hover:text-red-600"
-                    activeClassName="text-red-600"
-                  >
-                    TV SHOWS
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="block py-2 pl-3 pr-4 md:p-0 text-black hover:text-red-600"
-                    activeClassName="text-red-600"
-                  >
-                    CONTACT
-                  </Link>
-                </li>
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+              <a
+                href="#"
+                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                aria-current="page"
+              >
+                HOME
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >
+                ABOUT
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >
+                MOVIES
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >
+                TV SHOWS
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
-};
-
-export default TopNavbar;
+}

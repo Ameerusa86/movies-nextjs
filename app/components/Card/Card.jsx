@@ -24,7 +24,7 @@ const Card = ({ item }) => {
   const imageUrl = IMG_URL + (poster_path || backdrop_path);
 
   return (
-    <Link href={`/${media_type}/${id}`} className="link">
+    <Link href={`/${media_type}/${id}`} className="link ">
       <div className="container">
         <div className="wrapper hover:opacity-80">
           <div
