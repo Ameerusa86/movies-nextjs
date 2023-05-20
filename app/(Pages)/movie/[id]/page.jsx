@@ -5,7 +5,7 @@ const DetailsPage = async ({ params }) => {
   const IMG_URL = "https://image.tmdb.org/t/p/original/";
   const { id } = params;
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API}`, {next:{revalidate:60}}
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.APIKEY}`, {next:{revalidate:60}}
   );
   const data = await res.json();
   const {

@@ -2,11 +2,11 @@ import React from "react";
 import Image from "next/image";
 
 const Hero = async () => {
-  const API = process.env.API;
+  const tmdbAPI = process.env.APIKEY;
   const IMG_URL = "https://image.tmdb.org/t/p/original";
 
   const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${API}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=28`
+    `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbAPI}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=28`
   );
 
   const data = await response.json();

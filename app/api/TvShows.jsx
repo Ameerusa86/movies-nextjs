@@ -1,11 +1,11 @@
 import React from "react";
 import Card from "../components/Card/Card";
 
-const API_KEY = process.env.API;
+const tmdbAPI = process.env.APIKEY;
 
 const TvShows = async () => {
   const res = await fetch(
-    `https://api.themoviedb.org/3/trending/tv/week?api_key=${API_KEY}&language=en-US`,
+    `https://api.themoviedb.org/3/trending/tv/week?api_key=${tmdbAPI}&language=en-US`,
     { next: { revalidate: 3600 } }
   );
   const data = await res.json();

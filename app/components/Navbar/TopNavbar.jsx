@@ -27,7 +27,7 @@ export default function TopNavbar() {
 
   return (
     <nav
-      className={`bg-white border-gray-200 dark:bg-gray-900 font-Righeous tracking-widest	z-50 ${
+      className={`font-righteous bg-white border-gray-200 dark:bg-gray-900 font-Righeous tracking-widest	z-50 ${
         isScrolled ? "sticky top-0 shadow-md" : ""
       }`}
     >
