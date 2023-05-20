@@ -17,6 +17,7 @@ const Card = ({ item }) => {
     poster_path,
     backdrop_path,
     poster,
+    
   } = item;
 
   const media_type = item.media_type ? item.media_type : "tv";

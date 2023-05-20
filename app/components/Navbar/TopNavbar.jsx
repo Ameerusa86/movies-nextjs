@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import logo from '../../../public/Asset/logo.png'
-import {HiOutlineMenu} from "react-icons/hi";
+import logo from "../../../public/Asset/logo.png";
+import { HiOutlineMenu } from "react-icons/hi";
 import Link from "next/link";
+import SearchBox from "../Search/Search";
 
 export default function TopNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,6 +32,7 @@ export default function TopNavbar() {
         isScrolled ? "sticky top-0 shadow-md" : ""
       }`}
     >
+    <SearchBox/>
       <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/" className="flex items-center">
           <Image src={logo} alt="Flowbite Logo" width={80} height={80} />
@@ -100,7 +102,6 @@ export default function TopNavbar() {
                 CONTACT
               </a>
             </li>
-          
           </ul>
         </div>
       </div>
