@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 const Hero = async () => {
-  const API = process.env.API_KEY;
+  const API = process.env.API;
   const IMG_URL = "https://image.tmdb.org/t/p/original";
 
   const response = await fetch(
@@ -28,7 +28,7 @@ const Hero = async () => {
         />
         <div className="absolute bottom-40 right-20 text-4xl p-8 rounded-xl drop-shadow-md bg-gray-800 bg-opacity-40 max-w-xl sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl min-w-[50px] border border-white-500 ">
           {" "}
-          <h1 className="text-6xl mb-4 font-bold text-amber-600 sm:text-3xl md:text-4xl lg:text-5xl">
+          <h1 className="text-6xl mb-4 font-bold text-amber-600 sm:text-3xl md:text-4xl lg:text-5xl ">
             {movie.title}
           </h1>
           <h1 className="text-white text-lg md:text-md sm:text-sm mb-4">

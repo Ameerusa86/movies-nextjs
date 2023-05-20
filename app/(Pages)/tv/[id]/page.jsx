@@ -5,7 +5,7 @@ const TvShowsDetails = async ({ params }) => {
   const { id } = params;
   const IMG_URL = "https://image.tmdb.org/t/p/original/";
   const res = await fetch(
-    `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.API_KEY}`
+    `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.API}`
   );
   const data = await res.json();
   const {
@@ -51,7 +51,7 @@ const TvShowsDetails = async ({ params }) => {
           }}
         />
         <div className="p-2">
-          <h1 className="mb-3 text-4xl font-bold">{title}</h1>
+          <h1 className="mb-3 text-4xl font-bold">{name}</h1>
           <p className="text-lg mb-3">
             <span className="font-semibold text-red-700">Overview: </span>
             {overview}

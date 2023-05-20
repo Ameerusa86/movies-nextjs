@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../components/Card/Card";
 
-const API_KEY = process.env.API_KEY;
+const API_KEY = process.env.API;
 
 const TvShows = async () => {
   const res = await fetch(

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from '../../../public/Asset/logo.png'
 import {HiOutlineMenu} from "react-icons/hi";
+import Link from "next/link";
 
 export default function TopNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,13 +31,13 @@ export default function TopNavbar() {
         isScrolled ? "sticky top-0 shadow-md" : ""
       }`}
     >
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" className="flex items-center">
+      <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <Link href="/" className="flex items-center">
           <Image src={logo} alt="Flowbite Logo" width={80} height={80} />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
             Cinema Universe
           </span>
-        </a>
+        </Link>
         <div className="flex items-center md:order-2">{/* User Button */}</div>
         <div className="flex items-center">
           <button
@@ -47,7 +48,7 @@ export default function TopNavbar() {
             onClick={toggleMobileMenu}
           >
             <span className="sr-only">Open main menu</span>
-            <HiOutlineMenu size={25}/>
+            <HiOutlineMenu size={25} />
           </button>
         </div>
         {/* Mobile Menu */}
@@ -99,6 +100,7 @@ export default function TopNavbar() {
                 CONTACT
               </a>
             </li>
+          
           </ul>
         </div>
       </div>
