@@ -57,12 +57,14 @@ const TvShowsDetails = async ({ params }) => {
             {overview}
           </p>
           <p className="mb-3">
-            <span className="text-red-700 font-bold">Date Released:</span>
+            <span className="text-red-700 font-bold">Date Released: </span>
             {release_date || first_air_date}
           </p>
           <p className="mb-3">
-            <span className="text-red-700 font-bold">Rating:</span>
-            {vote_average === null ? "N/A" : vote_average}
+            <span className="text-red-700 font-bold">Rating: </span>
+            {Math.round(vote_average) === null
+              ? "N/A"
+              : Math.round(vote_average)}
           </p>
         </div>
       </div>

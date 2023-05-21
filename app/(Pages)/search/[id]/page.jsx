@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import "../searchpage.css";
+import TopNavbar from "@/app/components/Navbar/TopNavbar";
 
 const SearchPage = async ({ params }) => {
   const IMG_URL = "https://image.tmdb.org/t/p/original";
@@ -30,45 +31,48 @@ const SearchPage = async ({ params }) => {
   }
 
   return (
-    <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-w-screen-2xl mx-auto py-4 px-4 gap-3">
-      <h1 className="font-Righteous text-3xl text-center w-full flex flex-col justify-center items-center">
-        You searched for:
-        <br />
-        <span className="text-amber-600 text-center">{params.id}</span>
-      </h1>
-      {results.map((result) => {
-        const {
-          id,
-          title,
-          name,
-          vote_average,
-          overview,
-          release_date,
-          poster_path,
-          backdrop_path,
-          first_air_date,
-        } = result;
+    <>
+    <TopNavbar/>
+      <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-w-screen-2xl mx-auto py-4 px-4 gap-3">
+        <h1 className="font-Righteous text-3xl text-center w-full flex flex-col justify-center items-center">
+          You searched for:
+          <br />
+          <span className="text-amber-600 text-center">{params.id}</span>
+        </h1>
+        {results.map((result) => {
+          const {
+            id,
+            title,
+            name,
+            vote_average,
+            overview,
+            release_date,
+            poster_path,
+            backdrop_path,
+            first_air_date,
+          } = result;
 
-        const imageUrl = IMG_URL + (poster_path || backdrop_path);
-        const media_type = result.media_type ? result.media_type : "tv";
+          const imageUrl = IMG_URL + (poster_path || backdrop_path);
+          const media_type = result.media_type ? result.media_type : "tv";
 
-        return (
-          <Link href={`/${media_type}/${id}`} className="link" key={id}>
-            <div className="container">
-              <div className="wrapper hover:opacity-80">
-                <div
-                  className="banner-image "
-                  style={{ backgroundImage: `url(${imageUrl})` }}
-                ></div>
-                <h1> {title || name}</h1>
-                <p className="line-clamp-3">{overview}</p>
-                <p>Release Date {release_date || first_air_date}</p>
+          return (
+            <Link href={`/${media_type}/${id}`} className="link" key={id}>
+              <div className="container">
+                <div className="wrapper hover:opacity-80">
+                  <div
+                    className="banner-image "
+                    style={{ backgroundImage: `url(${imageUrl})` }}
+                  ></div>
+                  <h1> {title || name}</h1>
+                  <p className="line-clamp-3">{overview}</p>
+                  <p>Release Date {release_date || first_air_date}</p>
+                </div>
               </div>
-            </div>
-          </Link>
-        );
-      })}
-    </div>
+            </Link>
+          );
+        })}
+      </div>
+    </>
   );
 };
 
