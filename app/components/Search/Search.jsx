@@ -1,9 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import {ImSearch} from "react-icons/im";
+import './Search.css'
 
 const SearchBox = () => {
   const [search, setSearch] = useState("");
+  const [isExpanded, setIsExpanded] = useState(false);
   const router = useRouter();
 
   const handleSubmit = (e) => {
@@ -12,23 +15,30 @@ const SearchBox = () => {
     router.push(`/search/${search}`);
   };
 
+  const handleExpand = () => {
+    setIsExpanded(true);
+  };
+
+  const handleCollapse = () => {
+    setIsExpanded(false);
+  };
+
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex max-w-6xl mx-auto justify-between items-center px-5"
+      className={`search-box ${isExpanded ? "expanded" : ""}`}
     >
       <input
         onChange={(e) => setSearch(e.target.value)}
         value={search}
         type="text"
         placeholder="Search"
-        className="w-full h-14 rounded-md placeholder-gray-500 outline-none bg-transparent fex-1"
+        className="search-input"
+        onFocus={handleExpand}
+        onBlur={handleCollapse}
       />
-      <button
-        disabled={!search}
-        className="w-full h-14 rounded-md placeholder-gray-500 outline-none bg-transparent"
-      >
-        Search BTN
+      <button disabled={!search} className="search-button">
+        <span className="search-icon"><ImSearch/></span>
       </button>
     </form>
   );

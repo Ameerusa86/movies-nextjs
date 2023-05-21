@@ -12,7 +12,7 @@ export default function TopNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isTop = window.scrollY === 0;
+      const isTop = window.scrollY === 10;
       setIsScrolled(!isTop);
     };
 
@@ -32,7 +32,6 @@ export default function TopNavbar() {
         isScrolled ? "sticky top-0 shadow-md" : ""
       }`}
     >
-    <SearchBox/>
       <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/" className="flex items-center">
           <Image src={logo} alt="Flowbite Logo" width={80} height={80} />
@@ -40,7 +39,9 @@ export default function TopNavbar() {
             Cinema Universe
           </span>
         </Link>
-        <div className="flex items-center md:order-2">{/* User Button */}</div>
+        <div className="flex items-center md:order-2">
+          <SearchBox />
+        </div>
         <div className="flex items-center">
           <button
             type="button"
@@ -60,11 +61,11 @@ export default function TopNavbar() {
           }`}
           id="mobile-menu-2"
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
+          <ul className="font-righteous flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li className="font-righteous">
               <a
                 href="/"
-                className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                className="font-righteous block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                 aria-current="page"
               >
                 HOME
