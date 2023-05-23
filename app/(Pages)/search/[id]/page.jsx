@@ -32,9 +32,9 @@ const SearchPage = async ({ params }) => {
 
   return (
     <>
-    <TopNavbar/>
+      <TopNavbar />
       <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-w-screen-2xl mx-auto py-4 px-4 gap-3">
-        <h1 className="font-Righteous text-3xl text-center w-full flex flex-col justify-center items-center">
+        <h1 className=" text-3xl text-center w-full flex flex-col justify-center items-center">
           You searched for:
           <br />
           <span className="text-amber-600 text-center">{params.id}</span>

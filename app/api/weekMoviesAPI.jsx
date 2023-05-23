@@ -34,3 +34,5 @@ const PopularMoviesAPI = async () => {
 };
 
 export default PopularMoviesAPI;
+
+// Today Movies API

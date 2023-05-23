@@ -1,20 +1,25 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  experimental: {
+    serverActions: true,
+  },
+  
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    fontFamily: {
-      Righeous: "Righteous",
-    },
+    // fontFamily: {
+    //   Righeous: "Righteous",
+    // },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+
       colors: {
         // "dark-purple": "#081A51",
         "dark-purple": "#1d2f3e",

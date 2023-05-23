@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^13.4.3",
     "@splidejs/splide": "^4.1.4",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",

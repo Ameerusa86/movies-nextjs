@@ -28,18 +28,18 @@ export default function TopNavbar() {
 
   return (
     <nav
-      className={`font-righteous bg-white border-gray-200 dark:bg-gray-900 font-Righeous tracking-widest	z-50 ${
+      className={` bg-white border-gray-200 dark:bg-gray-900 tracking-widest	z-50 ${
         isScrolled ? "sticky top-0 shadow-md" : ""
       }`}
     >
       <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/" className="flex items-center">
-          <Image src={logo} alt="Flowbite Logo" width={80} height={80} />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <Image src={logo} alt="Logo" width={80} height={80} />
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-black dark:text-white">
             Cinema Universe
           </span>
         </Link>
-        <div className="flex items-center md:order-2">
+        <div className="flex items-center md:order-2 lg:flex">
           <SearchBox />
         </div>
         <div className="flex items-center">
@@ -56,16 +56,16 @@ export default function TopNavbar() {
         </div>
         {/* Mobile Menu */}
         <div
-          className={`items-center justify-between w-full md:flex md:w-auto md:order-1 transition-all duration-300 ease-in-out ${
+          className={`items-center justify-between w-full lg:flex lg:w-auto md:order-1 transition-all duration-300 ease-in-out ${
             isMobileMenuOpen ? "block" : "hidden"
           }`}
           id="mobile-menu-2"
         >
-          <ul className="font-righteous flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li className="font-righteous">
+          <ul className=" flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li className="">
               <a
                 href="/"
-                className="font-righteous block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                className=" block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                 aria-current="page"
               >
                 HOME
