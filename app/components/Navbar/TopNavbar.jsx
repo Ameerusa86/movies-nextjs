@@ -26,26 +26,30 @@ export default function TopNavbar() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleLinkClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <nav
-      className={` bg-white border-gray-200 dark:bg-gray-900 tracking-widest	z-50 ${
+      className={` bg-white border-gray-200 tracking-widest	z-50 ${
         isScrolled ? "sticky top-0 shadow-md" : ""
       }`}
     >
-      <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-4xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/" className="flex items-center">
           <Image src={logo} alt="Logo" width={80} height={80} />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-black dark:text-white">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap text-black hover:text-amber-600">
             Cinema Universe
           </span>
         </Link>
-        <div className="flex items-center md:order-2 lg:flex">
+        <div className="flex items-center justify-end  lg:flex">
           <SearchBox />
         </div>
         <div className="flex items-center">
           <button
             type="button"
-            className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100"
+            className="inline-flex items-center p-2 ml-1 text-sm text-black hover:text-white rounded-lg lg:hidden hover:bg-amber-600"
             aria-controls="mobile-menu-2"
             aria-expanded={isMobileMenuOpen ? "true" : "false"}
             onClick={toggleMobileMenu}
@@ -56,52 +60,62 @@ export default function TopNavbar() {
         </div>
         {/* Mobile Menu */}
         <div
-          className={`items-center justify-between w-full lg:flex lg:w-auto md:order-1 transition-all duration-300 ease-in-out ${
+          className={`items-center justify-between w-full lg:flex lg:w-auto  transition-all duration-300 ease-in-out ${
             isMobileMenuOpen ? "block" : "hidden"
           }`}
           id="mobile-menu-2"
         >
-          <ul className=" flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className=" flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
             <li className="">
-              <a
+              <Link
                 href="/"
-                className=" block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                className=" block py-2 pl-3 pr-4 text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600  md:p-0 "
                 aria-current="page"
+                onClick={handleLinkClick}
               >
                 HOME
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/about"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className="block py-2 pl-3 pr-4  text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600 md:p-0"
+                aria-current="page"
+                onClick={handleLinkClick}
               >
                 ABOUT
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/movie"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className="block py-2 pl-3 pr-4 text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600 md:p-0 "
+                aria-current="page"
+                onClick={handleLinkClick}
               >
                 MOVIES
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/tv"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className="block py-2 pl-3 pr-4  text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600 md:p-0 "
+                aria-current="page"
+                onClick={handleLinkClick}
               >
                 TV SHOWS
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/contact"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                className="block py-2 pl-3 pr-4  text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600 md:p-0 "
+                aria-current="page"
+                onClick={handleLinkClick}
               >
                 CONTACT
-              </a>
+              </Link>
+              
             </li>
           </ul>
         </div>

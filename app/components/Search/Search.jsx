@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import {ImSearch} from "react-icons/im";
-import './Search.css'
+import { ImSearch } from "react-icons/im";
+import "./Search.css";
+import Link from "next/link";
 
 const SearchBox = () => {
   const [search, setSearch] = useState("");
@@ -24,22 +25,37 @@ const SearchBox = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={`search-box ${isExpanded ? "expanded" : ""}`}
-    >
+    // <form
+    //   onSubmit={handleSubmit}
+    //   className={`search-box ${isExpanded ? "expanded" : ""}`}
+    // >
+    //   <input
+    //     onChange={(e) => setSearch(e.target.value)}
+    //     value={search}
+    //     type="text"
+    //     placeholder="Search"
+    //     className="search-input flex justify-end"
+    //     onFocus={handleExpand}
+    //     onBlur={handleCollapse}
+    //   />
+    //   <button disabled={!search} className="search-button">
+    //     <span className="search-icon"><ImSearch/></span>
+    //   </button>
+    // </form>
+
+    <form onSubmit={handleSubmit} className="search-box">
       <input
+        type="text"
         onChange={(e) => setSearch(e.target.value)}
         value={search}
-        type="text"
         placeholder="Search"
-        className="search-input"
-        onFocus={handleExpand}
-        onBlur={handleCollapse}
+        className="search-text"
       />
-      <button disabled={!search} className="search-button">
-        <span className="search-icon"><ImSearch/></span>
-      </button>
+      <Link href="#" disabled={!search}>
+        <span className="search-btn">
+          <ImSearch />
+        </span>
+      </Link>
     </form>
   );
 };

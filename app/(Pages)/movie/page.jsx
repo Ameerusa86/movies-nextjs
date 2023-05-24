@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import TrendingMovies from "@/app/api/todayMovies";
 import PopularMoviesAPI from "@/app/api/weekMoviesAPI";
-import TopNavbar from "@/app/components/Navbar/TopNavbar";
 
 const MoviesPage = ({movie}) => {
   const [selectedAPI, setSelectedAPI] = useState("popular");
@@ -13,7 +12,6 @@ const MoviesPage = ({movie}) => {
 
   return (
     <div>
-      <TopNavbar />
       <div className="flex items-center justify-center gap-x-3">
         <h1 className="text-2xl text-center cursor-pointer text-white font-Righeous">TRENDING: </h1>
         <h1
