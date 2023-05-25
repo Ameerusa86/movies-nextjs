@@ -52,7 +52,7 @@ const ReusableSwiper = ({ endpoint, apiKey }) => {
           },
           1024: {
             slidesPerView: 4,
-            spaceBetween: 30,
+            spaceBetween: 150,
           },
         }}
       >
@@ -61,13 +61,13 @@ const ReusableSwiper = ({ endpoint, apiKey }) => {
           const media_type = item.media_type ? item.media_type : "tv";
           return (
             <SwiperSlide key={item.id} className="">
-              <div>
+              <div className="card">
                 <Image
-                  className="rounded-lg"
+                  className=" card-img"
                   src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
                   alt={item.title}
-                  width={500}
-                  height={750}
+                  width={320}
+                  height={550}
                   layout="responsive"
                 />
                 <div className="circle-rate absolute -top-10">
@@ -94,9 +94,12 @@ const ReusableSwiper = ({ endpoint, apiKey }) => {
                     {Math.round(item.vote_average)}
                   </span>
                 </div>
-                <h2 className="text-xl font-bold text-white text-center">
-                  {item.title}
-                </h2>
+                <div className="card-body">
+                  <h2 className="card-title text-center">
+                    {item.title || item.name}
+                  </h2>
+                  <p className="card-info text-center">{item.overview}</p>
+                </div>
               </div>
             </SwiperSlide>
           );

@@ -11,7 +11,6 @@ export default function Home() {
     <>
       {/* <Navbar/> */}
       {/* <TopNavbar /> */}
-      <SearchBox />
       {/* <Hero /> */}
       <MainSwiper/>
       <h1 className="text-center text-4xl mb-5 font-bold text-white">

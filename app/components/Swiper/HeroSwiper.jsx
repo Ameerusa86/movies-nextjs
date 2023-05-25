@@ -44,7 +44,7 @@ export default function HeroSwiper({ endpoint, apiKey }) {
       spaceBetween={30}
       centeredSlides={true}
       autoplay={{
-        delay: 2500,
+        delay: 5500,
         disableOnInteraction: false,
       }}
       pagination={{
