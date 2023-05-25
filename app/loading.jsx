@@ -1,9 +1,10 @@
 import React from "react";
 
 const loading = () => {
-    setTimeout(() => {
-        return <div className="loader"></div>;
-    }, 2000)
+    // setTimeout(() => {
+    //     return <div className="loader">Loading...</div>;
+    // }, 2000)
+    return <div className="loader">Loading...</div>;
   
 };
 

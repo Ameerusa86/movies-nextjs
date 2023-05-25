@@ -1,5 +1,5 @@
 "use client";
-//
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import SwiperCore, { Navigation } from "swiper";
@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 import "./swiper.css";
 import Image from "next/image";
 import Link from "next/link";
+
 
 SwiperCore.use([Navigation]);
 

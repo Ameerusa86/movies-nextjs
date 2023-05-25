@@ -2,6 +2,7 @@ import Hero from "./components/Hero/Hero";
 // import Navbar from "./components/Navbar/Navbar";
 import TopNavbar from "./components/Navbar/TopNavbar";
 import SearchBox from "./components/Search/Search";
+import MainSwiper from "./components/dataSwiper/MainSwiper";
 import MoviesSwiper from "./components/dataSwiper/MoviesSwiper";
 import TVShowsSwiper from "./components/dataSwiper/TVShowsSwiper";
 
@@ -11,7 +12,8 @@ export default function Home() {
       {/* <Navbar/> */}
       {/* <TopNavbar /> */}
       <SearchBox />
-      <Hero />
+      {/* <Hero /> */}
+      <MainSwiper/>
       <h1 className="text-center text-4xl mb-5 font-bold text-white">
         Trending Movies
       </h1>
