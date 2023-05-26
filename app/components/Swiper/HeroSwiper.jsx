@@ -51,21 +51,35 @@ export default function HeroSwiper({ endpoint, apiKey }) {
         clickable: true,
       }}
       navigation={true}
+      loop={true}
+      slidesPerView={1}
+    
       modules={[Autoplay, Pagination, Navigation]}
       onAutoplayTimeLeft={onAutoplayTimeLeft}
-      className="mySwiper"
+      className=""
     >
       {data.map((item, index) => (
         <React.Fragment key={index}>
-          <SwiperSlide>
+          <SwiperSlide className="">
             <img
-              className="rounded-lg relative"
-              src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+              className=""
+              src={
+                window.innerWidth < 750
+                  ? `https://image.tmdb.org/t/p/original${item.poster_path}`
+                  : `https://image.tmdb.org/t/p/original${item.backdrop_path}`
+              }
               alt={item.title}
             />
-            <div>
-              <h1 className="absolute top-6 left-5 text-5xl z-50 text-center italic  text-white">
+            <div className="absolute rounded-xl drop-shadow-md bg-gray-800 bg-opacity-40 border border-white-500 z-50 xs:bottom-[64px] sm:left-4 sm:max-w-sm sm:p-4 lg:bottom-10 left-10">
+              <h1 className="text-4xl mb-4 font-bold text-amber-600">
                 {item.title}
+              </h1>
+              <h1 className="text-white text-xs px-4 line-clamp-3 ">
+                {item.overview}
+              </h1>
+              <h1 className="text-white text-sm md:text-base px-4">
+                <span className="text-amber-600 text-md">Release Date: </span>
+                {item.release_date}
               </h1>
             </div>
           </SwiperSlide>

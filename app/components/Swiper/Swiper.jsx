@@ -4,13 +4,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import "./swiper.css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./swiper.css";
+// import "./swiper.css";
 import Image from "next/image";
 import Link from "next/link";
-
 
 SwiperCore.use([Navigation]);
 
@@ -52,7 +51,7 @@ const ReusableSwiper = ({ endpoint, apiKey }) => {
           },
           1024: {
             slidesPerView: 4,
-            spaceBetween: 150,
+            spaceBetween: 30,
           },
         }}
       >
@@ -63,11 +62,11 @@ const ReusableSwiper = ({ endpoint, apiKey }) => {
             <SwiperSlide key={item.id} className="">
               <div className="card">
                 <Image
-                  className=" card-img"
+                  className="card-img"
                   src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
                   alt={item.title}
-                  width={320}
-                  height={550}
+                  width={100}
+                  height={100}
                   layout="responsive"
                 />
                 <div className="circle-rate absolute -top-10">
@@ -94,11 +93,11 @@ const ReusableSwiper = ({ endpoint, apiKey }) => {
                     {Math.round(item.vote_average)}
                   </span>
                 </div>
-                <div className="card-body">
-                  <h2 className="card-title text-center">
-                    {item.title || item.name}
-                  </h2>
-                  <p className="card-info text-center">{item.overview}</p>
+                <div className="card-body text-center">
+                  <Link href={`/${media_type}/${id}`}>
+                    <h2 className="card-title">{item.title || item.name}</h2>
+                  </Link>
+                  <p className="card-info">{item.overview}</p>
                 </div>
               </div>
             </SwiperSlide>
