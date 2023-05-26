@@ -1,4 +1,3 @@
-import Card from "@/app/components/Card/Card";
 import Image from "next/image";
 import React from "react";
 
@@ -43,7 +42,7 @@ const DetailsPage = async ({ params }) => {
   return (
     <>
       <div
-        className="flex place-content-center w-full h-screen relative "
+        className="flex place-content-center w-full h-screen relative z-10"
         style={{
           backgroundImage: `url(${imageBackdrop})`,
           backgroundSize: "cover",
@@ -86,12 +85,12 @@ const DetailsPage = async ({ params }) => {
               {overview}
             </h3>
 
-            <p className="">
+            <h3 className="">
               <span className="text-amber-600 font-bold">Rating: </span>
               {Math.round(vote_average) === null
                 ? "N/A"
                 : Math.round(vote_average)}
-            </p>
+            </h3>
             <h3>
               <span className="text-amber-600 font-bold ">Budget: </span>:{" "}
               {budget.toLocaleString()} USD
@@ -100,33 +99,32 @@ const DetailsPage = async ({ params }) => {
               <span className="text-amber-600 font-bold ">Revenue: </span>:{" "}
               {revenue.toLocaleString()} USD
             </h3>
-          <div>
+          </div>
+        </div>
+      </div>
+      <div className="w-full h-full">
+        <div className="">
+          <h3 className="text-2xl font-bold mt-8 px-8">Movie Cast</h3>
+          <div className="flex flex-wrap items-center justify-center mt-4">
             {limitedCredits.map((cast) => {
               return (
-                <>
-                  <div key={cast.id} className="flex">
-                    <h3 className="text-lg">
-                      <span className="text-amber-600 font-bold ">Actor: </span>
-                      {cast.name || cast.original_name}
-                    </h3>
-                    <h3 className="text-lg">
-                      <span className="text-amber-600 font-bold ">
-                        Character:{" "}
-                      </span>
-                      {cast.character}
-                    </h3>
-                    <div className="grid grid-cols-4 grid-rows-3">
-                      <Image
-                        src={IMG_URL + cast.profile_path}
-                        width={200}
-                        height={200}
-                      />
-                    </div>
+                <div key={cast.id} className="flex flex-col items-center m-4">
+                  <div className="relative w-40 h-56">
+                    <Image
+                      src={IMG_URL + cast.profile_path}
+                      alt={cast.name}
+                      layout="fill"
+                      objectFit="cover"
+                      className="rounded-lg"
+                    />
                   </div>
-                </>
+                  <h3 className="text-lg mt-2">
+                    {cast.name || cast.original_name}
+                  </h3>
+                  <p className="text-sm text-gray-500">{cast.character}</p>
+                </div>
               );
             })}
-          </div>
           </div>
         </div>
       </div>
