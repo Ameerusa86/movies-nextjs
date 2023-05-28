@@ -1,5 +1,8 @@
 ## Cinema Universe
 
+![image](https://github.com/Ameerusa86/movies-nextjs/assets/46317379/9b83d609-c1be-46ef-979a-0b2f67b43997)
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
