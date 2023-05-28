@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 const Hero = async () => {
-  const tmdbAPI = process.env.APIKEY;
+  const tmdbAPI = process.env.NEXT_PUBLIC_APIKEY;
   const IMG_URL = "https://image.tmdb.org/t/p/original";
 
   const response = await fetch(

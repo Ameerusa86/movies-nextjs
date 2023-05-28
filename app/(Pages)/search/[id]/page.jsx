@@ -6,7 +6,7 @@ const SearchPage = async ({ params }) => {
   const IMG_URL = "https://image.tmdb.org/t/p/original";
 
   const res = await fetch(
-    `https://api.themoviedb.org/3/search/multi?api_key=${process.env.APIKEY}&query=${params.id}&language=en`
+    `https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_APIKEY}&query=${params.id}&language=en`
   );
 
   if (!res.ok) {

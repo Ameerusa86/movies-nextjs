@@ -1,9 +1,9 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card/Card";
-import process from "process";
 
-const TrendingMovies = () => {
+const PopularMoviesAPI = async () => {
   const tmdbAPI = process.env.APIKEY;
   const IMG_URL = "https://image.tmdb.org/t/p/original";
   const [movies, setMovies] = useState([]);
@@ -12,9 +12,8 @@ const TrendingMovies = () => {
 
   const fetchMovies = async (page) => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/trending/movie/day?api_key=4a1414e6b1a6bd74ff7f45f4b0a63770&page=${page}`
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=4a1414e6b1a6bd74ff7f45f4b0a63770&page=&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}`
     );
-
     if (response.status === 200) {
       const data = await response.json();
       const movies = data.results;
@@ -99,4 +98,6 @@ const TrendingMovies = () => {
   );
 };
 
-export default TrendingMovies;
+export default PopularMoviesAPI;
+
+// Today Movies API

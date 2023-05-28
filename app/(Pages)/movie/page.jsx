@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import TrendingMovies from "@/app/api/todayMovies";
-import PopularMoviesAPI from "@/app/api/weekMoviesAPI";
+import TrendingMovies from "@/app/api/weekMovies";
+import PopularMoviesAPI from "@/app/api/todayMoviesAPI";
 
 const MoviesPage = ({movie}) => {
   const [selectedAPI, setSelectedAPI] = useState("popular");

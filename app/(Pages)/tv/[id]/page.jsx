@@ -6,7 +6,7 @@ const TvShowsDetails = async ({ params }) => {
   const { id } = params;
   const IMG_URL = "https://image.tmdb.org/t/p/original/";
   const res = await fetch(
-    `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.APIKEY}`
+    `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.NEXT_PUBLIC_APIKEY}`
   );
   const data = await res.json();
   const {
