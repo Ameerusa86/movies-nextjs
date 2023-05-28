@@ -6,7 +6,7 @@ const Hero = async () => {
   const IMG_URL = "https://image.tmdb.org/t/p/original";
 
   const response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?api_key=${tmdbAPI}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=28`
+    `https://api.themoviedb.org/3/trending/all/day?api_key=${tmdbAPI}&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false&page=1&with_genres=28`
   );
 
   const data = await response.json();
@@ -36,7 +36,7 @@ const Hero = async () => {
           </h1>
           <h1 className="text-white text-lg md:text-md sm:text-sm mb-4">
             <span className="text-amber-600">Release Date: </span>
-            {movie.release_date}
+            {movie.year}
           </h1>
         </div>{" "}
       </div>

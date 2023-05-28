@@ -1,3 +1,4 @@
+import DataCastSwiper from "@/app/components/dataSwiper/DataCastSwiper";
 import Image from "next/image";
 import React from "react";
 
@@ -9,14 +10,6 @@ const DetailsPage = async ({ params }) => {
     { next: { revalidate: 60 } }
   );
   const data = await res.json();
-
-  const getCredits = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.APIKEY}`,
-    { next: { revalidate: 60 } }
-  );
-
-  const credits = await getCredits.json();
-  console.log(credits);
 
   const {
     title,
@@ -37,8 +30,6 @@ const DetailsPage = async ({ params }) => {
     ? new Date(release_date).getFullYear()
     : new Date(first_air_date).getFullYear();
 
-  const limitedCredits = credits.cast.slice(0, 15); // Limit to 15 credit actors
-
   return (
     <>
       <div
@@ -55,79 +46,64 @@ const DetailsPage = async ({ params }) => {
       >
         <div className="absolute inset-0 bg-black opacity-80 "></div>
 
-        <div className="flex justify-center items-center z-50">
-          <div className="mr-8">
+        <div className="md:flex md:justify-center md:items-center z-50 px-8">
+          <div className="mr-6">
             <Image
               src={imageUrl}
               alt={title}
               width={300}
               height={100}
-              className="rounded-lg"
+              className="rounded-lg sm:mx-auto"
               style={{
-                maxWidth: "100%",
-                height: "100%",
                 objectFit: "cover",
                 objectPosition: "center",
+                margin: "1rem auto",
               }}
             />
           </div>
-          <div className="w-1/2 p-2 text-left">
-            <h1 className="text-2xl font-bold leading-loose">
+          <div className="w-full p-2 text-left">
+            <h1 className="md:text-3xl font-bold md:leading-loose">
               {title} ({year})
             </h1>
-            <h3>
-              <span className="text-amber-600 font-bold ">Language: </span>:{" "}
-              {original_language}
+            <h3 className="sm:text-xs md:text-xl">
+              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs ">
+                Language:{" "}
+              </span>
+              : {original_language}
             </h3>
 
-            <h3 className="text-lg">
-              <span className=" text-amber-600 font-bold ">Overview: </span>
+            <h3 className="sm:text-xs md:text-xl">
+              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs">
+                Overview:{" "}
+              </span>
               {overview}
             </h3>
 
-            <h3 className="">
-              <span className="text-amber-600 font-bold">Rating: </span>
+            <h3 className="sm:text-xs md:text-xl">
+              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs ">
+                Rating:{" "}
+              </span>
               {Math.round(vote_average) === null
                 ? "N/A"
                 : Math.round(vote_average)}
             </h3>
-            <h3>
-              <span className="text-amber-600 font-bold ">Budget: </span>:{" "}
-              {budget.toLocaleString()} USD
+            <h3 className="sm:text-xs md:text-xl">
+              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs ">
+                Budget:{" "}
+              </span>
+              : {budget.toLocaleString()} USD
             </h3>
-            <h3>
-              <span className="text-amber-600 font-bold ">Revenue: </span>:{" "}
-              {revenue.toLocaleString()} USD
+            <h3 className="sm:text-xs md:text-xl">
+              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs ">
+                Revenue:{" "}
+              </span>
+              : {revenue.toLocaleString()} USD
             </h3>
           </div>
         </div>
       </div>
-      <div className="w-full h-full">
-        <div className="">
-          <h3 className="text-2xl font-bold mt-8 px-8">Movie Cast</h3>
-          <div className="flex flex-wrap items-center justify-center mt-4">
-            {limitedCredits.map((cast) => {
-              return (
-                <div key={cast.id} className="flex flex-col items-center m-4">
-                  <div className="relative w-40 h-56">
-                    <Image
-                      src={IMG_URL + cast.profile_path}
-                      alt={cast.name}
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-lg"
-                    />
-                  </div>
-                  <h3 className="text-lg mt-2">
-                    {cast.name || cast.original_name}
-                  </h3>
-                  <p className="text-sm text-gray-500">{cast.character}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+
+      <DataCastSwiper id={id} mediaType="movie" />
     </>
   );
 };

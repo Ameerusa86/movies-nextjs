@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import HeroSwiper from "../Swiper/HeroSwiper";
 
 const MainSwiper = () => {

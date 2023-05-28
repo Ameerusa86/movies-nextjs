@@ -1,3 +1,4 @@
+import FooterComponent from "./components/Footer/Footer";
 import TopNavbar from "./components/Navbar/TopNavbar";
 import "./globals.css";
 // import { Righteous } from "next/font/google";
@@ -31,7 +32,9 @@ export default function RootLayout({ children }) {
           <TopNavbar />
         </header>
         {children}
-        <footer>Footer</footer>
+        <footer>
+          <FooterComponent/>
+        </footer>
       </body>
     </html>
   );

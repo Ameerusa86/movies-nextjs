@@ -45,15 +45,14 @@ export default function HeroSwiper({ endpoint, apiKey }) {
       centeredSlides={true}
       autoplay={{
         delay: 5500,
-        disableOnInteraction: false,
       }}
       pagination={{
         clickable: true,
+        dynamicBullets: true,
       }}
       navigation={true}
       loop={true}
       slidesPerView={1}
-    
       modules={[Autoplay, Pagination, Navigation]}
       onAutoplayTimeLeft={onAutoplayTimeLeft}
       className=""
@@ -70,7 +69,7 @@ export default function HeroSwiper({ endpoint, apiKey }) {
               }
               alt={item.title}
             />
-            <div className="absolute rounded-xl drop-shadow-md bg-gray-800 bg-opacity-40 border border-white-500 z-50 xs:bottom-[64px] sm:left-4 sm:max-w-sm sm:p-4 lg:bottom-10 left-10">
+            <div className="absolute rounded-xl drop-shadow-md bg-gray-800 bg-opacity-40 border border-white-500 z-auto xs:bottom-[150px] sm:left-4 xl:max-w-xl lg:max-w-md sm:max-w-sm sm:p-4 lg:bottom-10 left-10">
               <h1 className="text-4xl mb-4 font-bold text-amber-600">
                 {item.title}
               </h1>

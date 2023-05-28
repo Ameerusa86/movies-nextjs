@@ -1,36 +1,102 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Card from "../components/Card/Card";
 import process from "process";
 
-const TrendingMovies = async () => {
+const TrendingMovies = () => {
   const tmdbAPI = process.env.APIKEY;
   const IMG_URL = "https://image.tmdb.org/t/p/original";
-  const response = await fetch(
-    `https://api.themoviedb.org/3/trending/movie/day?api_key=4a1414e6b1a6bd74ff7f45f4b0a63770`
+  const [movies, setMovies] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+
+  const fetchMovies = async (page) => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=4a1414e6b1a6bd74ff7f45f4b0a63770&page=${page}`
+    );
+
+    if (response.status === 200) {
+      const data = await response.json();
+      const movies = data.results;
+      const totalPages = data.total_pages;
+
+      setMovies(movies);
+      setTotalPages(totalPages);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovies(currentPage);
+  }, [currentPage]);
+
+  const handlePageChange = (page) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setCurrentPage(page);
+  };
+
+  const handleNextPage = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  return (
+    <div className="max-w-screen-3xl mx-auto py-4 px-4">
+      <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
+        {movies.length > 0 ? (
+          movies.map((movie, id) => (
+            <Card key={id} item={movie} media_type="movie" />
+          ))
+        ) : (
+          <h1 className="text-3xl font-bold text-center">No Movies Found</h1>
+        )}
+      </div>
+
+      <div className="flex justify-center mt-4">
+        <button
+          className={`mx-1 px-3 py-1 rounded-lg ${
+            currentPage === 1
+              ? "bg-gray-300 text-gray-700"
+              : "bg-blue-500 text-white"
+          }`}
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+
+        {Array.from({ length: 10 }, (_, index) => index + 1).map((page) => (
+          <button
+            key={page}
+            className={`mx-1 px-3 py-1 rounded-lg ${
+              page === currentPage
+                ? "bg-blue-500 text-white"
+                : "bg-gray-300 text-gray-700"
+            }`}
+            onClick={() => handlePageChange(page)}
+          >
+            {page}
+          </button>
+        ))}
+
+        <button
+          className={`mx-1 px-3 py-1 rounded-lg ${
+            currentPage === totalPages
+              ? "bg-gray-300 text-gray-700"
+              : "bg-blue-500 text-white"
+          }`}
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
+    </div>
   );
-
-  if (response.status === 200) {
-    const data = await response.json();
-    const movies = data.results;
-
-    return (
-      <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-w-screen-3xl mx-auto py-4 px-4 gap-3 ">
-        {movies.map((movie, id) => {
-          return (
-            <>
-              <Card key={id} item={movie} media_type="movie" />
-            </>
-          );
-        })}
-      </div>
-    );
-  } else {
-    return (
-      <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 max-w-screen-3xl mx-auto py-4 px-4 gap-3 ">
-        <h1 className="text-3xl font-bold text-center">No Movies Found</h1>
-      </div>
-    );
-  }
 };
 
 export default TrendingMovies;
