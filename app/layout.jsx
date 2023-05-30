@@ -3,6 +3,7 @@ import TopNavbar from "./components/Navbar/TopNavbar";
 import "./globals.css";
 // import { Righteous } from "next/font/google";
 import { Barlow } from "next/font/google";
+import "tailwindcss/tailwind.css";
 
 // const inter = Inter({ subsets: ['latin'] })
 

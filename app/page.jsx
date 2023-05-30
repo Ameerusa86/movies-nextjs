@@ -1,6 +1,8 @@
 import MainSwiper from "./components/dataSwiper/MainSwiper";
 import MoviesSwiper from "./components/dataSwiper/MoviesSwiper";
 import TVShowsSwiper from "./components/dataSwiper/TVShowsSwiper";
+import "tailwindcss/tailwind.css";
+import "../styles/globals.css";
 
 export default function Home() {
   return (

@@ -112,3 +112,20 @@ body {
     margin-top: 0;
   }
 }
+
+/* Set the width and color of the scrollbar track */
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: orange;
+}
+
+/* Set the color of the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: orangered;
+  border-radius: 15px;
+}
+
+/* Set the color of the scrollbar thumb when hovered */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(243, 89, 33);
+}
