@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from "../../../public/Asset/logo.png";
 import { HiOutlineMenu } from "react-icons/hi";
 import Link from "next/link";
-import SearchBox from "../Search/Search";
+import { FaUserAlt, FaSearch } from "react-icons/fa";
 
 export default function TopNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,9 +43,7 @@ export default function TopNavbar() {
             Cinema Universe
           </span>
         </Link>
-        <div className="flex items-center justify-end  lg:flex">
-          <SearchBox />
-        </div>
+        <div className="flex items-center justify-end  lg:flex"></div>
         <div className="flex items-center">
           <button
             type="button"
@@ -79,7 +77,7 @@ export default function TopNavbar() {
             <li>
               <Link
                 href="/about"
-                className="block py-2 pl-3 pr-4  text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600 md:p-0"
+                className="block py-2 pl-3 pr-4 text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600 md:p-0"
                 aria-current="page"
                 onClick={handleLinkClick}
               >
@@ -115,7 +113,26 @@ export default function TopNavbar() {
               >
                 CONTACT
               </Link>
-              
+            </li>
+            <li className="flex items-center justify-center">
+              <Link
+                href=""
+                className="text-black active:text-amber-600 hover:text-amber-600 md:p-0 "
+                aria-current="page"
+                onClick={handleLinkClick}
+              >
+                <FaSearch className="" />
+              </Link>
+            </li>
+            <li className="flex items-center justify-center">
+              <Link
+                href="/account"
+                className="text-black active:text-amber-600 hover:text-amber-600 md:p-0 "
+                aria-current="page"
+                onClick={handleLinkClick}
+              >
+                <FaUserAlt className="" />
+              </Link>
             </li>
           </ul>
         </div>

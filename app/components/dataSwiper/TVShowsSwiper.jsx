@@ -8,7 +8,7 @@ const TVShowsSwiper = () => {
     <div>
       <ReusableSwiper
         endpoint="https://api.themoviedb.org/3/trending/tv/week"
-        apiKey="4a1414e6b1a6bd74ff7f45f4b0a63770"
+        apiKey={process.env.NEXT_PUBLIC_APIKEY}
       />
     </div>
   );

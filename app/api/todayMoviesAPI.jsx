@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../components/Card/Card";
 
 const PopularMoviesAPI = async () => {
-  const tmdbAPI = process.env.APIKEY;
+  const tmdbAPI = process.env.NEXT_PUBLIC_APIKEY;
   const IMG_URL = "https://image.tmdb.org/t/p/original";
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -12,7 +12,7 @@ const PopularMoviesAPI = async () => {
 
   const fetchMovies = async (page) => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/trending/movie/day?api_key=4a1414e6b1a6bd74ff7f45f4b0a63770&page=&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}`
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=${tmdbAPI}&page=&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}`
     );
     if (response.status === 200) {
       const data = await response.json();

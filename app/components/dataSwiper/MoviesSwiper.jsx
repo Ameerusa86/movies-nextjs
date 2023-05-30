@@ -6,7 +6,7 @@ const MoviesSwiper = () => {
   return (
     <ReusableSwiper
       endpoint="https://api.themoviedb.org/3/trending/movie/day"
-      apiKey="4a1414e6b1a6bd74ff7f45f4b0a63770"
+      apiKey={process.env.NEXT_PUBLIC_APIKEY}
     />
   );
 };
