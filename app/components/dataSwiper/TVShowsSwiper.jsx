@@ -1,7 +1,5 @@
 import React from "react";
 import ReusableSwiper from "../Swiper/Swiper";
-import Link from "next/link";
-import TvShows from "@/app/api/TvShows";
 
 const TVShowsSwiper = () => {
   return (

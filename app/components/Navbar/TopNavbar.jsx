@@ -5,10 +5,14 @@ import logo from "../../../public/Asset/logo.png";
 import { HiOutlineMenu } from "react-icons/hi";
 import Link from "next/link";
 import { FaUserAlt, FaSearch } from "react-icons/fa";
+import { WiDaySunny } from "react-icons/wi";
+import {HiOutlineMoon} from "react-icons/hi";
+import ProfileIcon from "../ProfileIcon";
 
 export default function TopNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [nightMode, setNightMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -125,14 +129,25 @@ export default function TopNavbar() {
               </Link>
             </li>
             <li className="flex items-center justify-center">
-              <Link
-                href="/account"
+              {/* <Link
+                href="/register"
                 className="text-black active:text-amber-600 hover:text-amber-600 md:p-0 "
                 aria-current="page"
                 onClick={handleLinkClick}
               >
                 <FaUserAlt className="" />
-              </Link>
+              </Link> */}
+              <ProfileIcon/>
+            </li>
+            <li
+              className="flex items-center justify-center text-black active:text-amber-600 hover:text-amber-600 md:p-0"
+              onClick={() => setNightMode(!nightMode)}
+            >
+              {nightMode ? (
+                <WiDaySunny size={25} />
+              ) : (
+                <HiOutlineMoon size={25} />
+              )}
             </li>
           </ul>
         </div>

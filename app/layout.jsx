@@ -1,3 +1,4 @@
+import { NextAuthProvider } from "@/lib/provider";
 import FooterComponent from "./components/Footer/Footer";
 import TopNavbar from "./components/Navbar/TopNavbar";
 import "./globals.css";
@@ -28,13 +29,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={"min-h-screen " + barlow.className}>
-        <header className="sticky top-0 z-50 text-3xl sm:text-md md:text-xl lg:text-lg xl:text-xl lg:justify-self-start">
-          <TopNavbar />
-        </header>
-        {children}
-        <footer>
-          <FooterComponent/>
-        </footer>
+        <NextAuthProvider>
+          <header className="sticky top-0 z-50 text-3xl sm:text-md md:text-xl lg:text-lg xl:text-xl lg:justify-self-start">
+            <TopNavbar />
+          </header>
+          {children}
+          <footer>
+            <FooterComponent />
+          </footer>
+        </NextAuthProvider>
       </body>
     </html>
   );

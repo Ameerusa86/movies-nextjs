@@ -32,7 +32,7 @@ const Card = ({ item }) => {
             className="banner-image "
             style={{ backgroundImage: `url(${imageUrl})` }}
           ></div>
-          <h1 className="lg:text-sm"> {title || original_name || original_title}</h1>
+          <h1 className="sm:text-xs lg:text-sm"> {title || original_name || original_title}</h1>
           <p className="line-clamp-3">{overview}</p>
           <p>Release Date {release_date || first_air_date}</p>
         </div>

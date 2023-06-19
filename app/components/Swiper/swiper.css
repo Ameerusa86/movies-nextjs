@@ -97,9 +97,24 @@
 }
 
 @media (max-width: 1830px) {
-.card{
-    width: calc(100% - 10px);
-    height: calc(100% - 10px);
+    .card {
+        width: calc(100% - 10px);
+        height: calc(100% - 10px);
+    }
+
 }
-    
+
+@media (min-width:1024px) and (max-width:1400px) {
+    .card-title {
+        font-size: 30px;
+    }
+}
+@media (min-width:768px) and (max-width:1024px) {
+    .card-title {
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+    .card-sub-title{
+        font-size: 8px;
+    }
 }

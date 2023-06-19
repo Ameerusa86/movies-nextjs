@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import TrendingMovies from "@/app/api/weekMovies";
-import PopularMoviesAPI from "@/app/api/todayMoviesAPI";
+import TrendingMovies from "@/app/APIFetch/weekMovies";
+import PopularMoviesAPI from "@/app/APIFetch/todayMoviesAPI";
 
-const MoviesPage = ({movie}) => {
+const MoviesPage = ({ movie }) => {
   const [selectedAPI, setSelectedAPI] = useState("popular");
 
   const handleAPIChange = (apiType) => {
@@ -13,7 +13,9 @@ const MoviesPage = ({movie}) => {
   return (
     <div>
       <div className="flex items-center justify-center gap-x-3">
-        <h1 className="text-2xl text-center cursor-pointer text-white font-Righeous">TRENDING: </h1>
+        <h1 className="text-2xl text-center cursor-pointer text-white font-Righeous">
+          TRENDING:{" "}
+        </h1>
         <h1
           className={`text-2xl text-center cursor-pointer hover:text-orange-600 ${
             selectedAPI === "popular" ? "text-orange-600" : ""

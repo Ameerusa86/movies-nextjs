@@ -148,14 +148,14 @@ const Navbar = () => {
               </>
             ))}
           </ul>
-          {/* <div className="flex flex-col gap-y-4 items-center justify-center mt-4">
+          <div className="flex flex-col gap-y-4 items-center justify-center mt-4">
             <button>
               <span>Login</span>
             </button>
             <button>
               <span>Sign Up</span>
             </button>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
