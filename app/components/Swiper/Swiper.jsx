@@ -89,7 +89,7 @@ const ReusableSwiper = ({ endpoint, apiKey }) => {
                       r="16"
                     ></circle>
                   </svg>
-                  <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold text-xs">
+                  <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black  font-bold text-xl">
                     {Math.round(item.vote_average)}
                   </span>
                 </div>
@@ -97,7 +97,7 @@ const ReusableSwiper = ({ endpoint, apiKey }) => {
                   <Link href={`/${media_type}/${id}`}>
                     <h2 className="card-title lg:text-md">{item.title || item.name}</h2>
                   </Link>
-                  <p className="card-info">{item.overview}</p>
+                  {/* <p className="card-info">{item.overview}</p> */}
                 </div>
               </div>
             </SwiperSlide>

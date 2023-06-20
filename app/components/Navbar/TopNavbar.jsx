@@ -8,6 +8,7 @@ import { FaUserAlt, FaSearch } from "react-icons/fa";
 import { WiDaySunny } from "react-icons/wi";
 import {HiOutlineMoon} from "react-icons/hi";
 import ProfileIcon from "../ProfileIcon";
+import SearchBox from "../Search/Search";
 
 export default function TopNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -127,6 +128,7 @@ export default function TopNavbar() {
               >
                 <FaSearch className="" />
               </Link>
+              
             </li>
             <li className="flex items-center justify-center">
               {/* <Link

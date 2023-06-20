@@ -16,12 +16,17 @@ const ProfileIcon = () => {
           height={40}
           className="rounded-full"
         />
-        <button className="text-black" onClick={() => signOut("github")}>Sign Out</button>
+        <button
+          className="text-white bg-amber-600 rounded-lg px-2"
+          onClick={() => signOut("github")}
+        >
+          Sign Out
+        </button>
       </div>
     );
   }
 
-  return <button className="text-black" onClick={() => signIn("github")}>Sign In</button>;
+  return <button className="text-white bg-amber-600 rounded-lg px-2" onClick={() => signIn("github")}>Sign In</button>;
 };
 
 export default ProfileIcon;
