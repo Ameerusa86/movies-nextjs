@@ -48,7 +48,7 @@ const HeroSplide = ({ endpoint, apiKey }) => {
                 <h1 className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-3xl mb-4 font-bold text-white">
                   {item.title || item.name}
                 </h1>
-                <p className="w-full lg:text-lg md:text-md sm:text-sm mb-4">
+                <p className="w-full lg:text-lg md:text-md sm:text-sm mb-4 text-left">
                   {item.overview}
                 </p>
                 <p>Release Date: {item.release_date}</p>
