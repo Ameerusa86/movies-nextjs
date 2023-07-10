@@ -6,7 +6,7 @@ import { HiOutlineMenu } from "react-icons/hi";
 import Link from "next/link";
 import { FaUserAlt, FaSearch } from "react-icons/fa";
 import { WiDaySunny } from "react-icons/wi";
-import {HiOutlineMoon} from "react-icons/hi";
+import { HiOutlineMoon } from "react-icons/hi";
 import ProfileIcon from "../ProfileIcon";
 import SearchBox from "../Search/Search";
 
@@ -37,11 +37,11 @@ export default function TopNavbar() {
 
   return (
     <nav
-      className={` bg-white border-gray-200 tracking-widest	z-50 ${
+      className={`bg-white	border-gray-200 tracking-widest	z-50 ${
         isScrolled ? "sticky top-0 shadow-md" : ""
       }`}
     >
-      <div className="max-w-screen-4xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/" className="flex items-center">
           <Image src={logo} alt="Logo" width={80} height={80} />
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-black hover:text-amber-600">
@@ -128,7 +128,6 @@ export default function TopNavbar() {
               >
                 <FaSearch className="" />
               </Link>
-              
             </li>
             <li className="flex items-center justify-center">
               {/* <Link
@@ -139,7 +138,7 @@ export default function TopNavbar() {
               >
                 <FaUserAlt className="" />
               </Link> */}
-              <ProfileIcon/>
+              <ProfileIcon />
             </li>
             <li
               className="flex items-center justify-center text-black active:text-amber-600 hover:text-amber-600 md:p-0"

@@ -44,7 +44,7 @@ export default function HeroSwiper({ endpoint, apiKey }) {
   return (
     <>
       <Swiper
-        spaceBetween={30}
+        // spaceBetween={30}
         centeredSlides={true}
         autoplay={{
           delay: 5500,
@@ -58,14 +58,14 @@ export default function HeroSwiper({ endpoint, apiKey }) {
         slidesPerView={1}
         modules={[Autoplay, Pagination, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
-        className=""
+        className="relative h-auto w-auto"
       >
         <SearchBox />
         {data.map((item, index) => (
           <React.Fragment key={index}>
             <SwiperSlide className="">
               <img
-                className=""
+                className="relative h-auto w-auto"
                 src={
                   window.innerWidth < 750
                     ? `https://image.tmdb.org/t/p/original${item.poster_path}`

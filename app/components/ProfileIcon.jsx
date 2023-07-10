@@ -26,7 +26,14 @@ const ProfileIcon = () => {
     );
   }
 
-  return <button className="text-white bg-amber-600 rounded-lg px-2" onClick={() => signIn("github")}>Sign In</button>;
+  return (
+    <button
+      className="text-white bg-amber-600 rounded-lg px-2"
+      onClick={() => signIn("github", { callbackUrl: "/" })}
+    >
+      Sign In
+    </button>
+  );
 };
 
 export default ProfileIcon;
