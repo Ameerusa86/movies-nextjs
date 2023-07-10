@@ -41,8 +41,8 @@ const HeroSplide = ({ endpoint, apiKey }) => {
       }}
     >
       {data.map((item) => (
-        <SplideSlide>
-          <div key={item.id} className="">
+        <SplideSlide key={item.id}>
+          <div className="">
             <div className="grid grid-cols-3 gap-4 h-[600]">
               <div className="px-8 w-full h-full flex flex-col justify-center items-start">
                 <h1 className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-3xl mb-4 font-bold text-white">
