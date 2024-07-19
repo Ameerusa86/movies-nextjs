@@ -3,16 +3,30 @@
 import React, { useState, useEffect } from "react";
 import Card from "../components/Card/Card";
 
-const PopularMoviesAPI = async () => {
+const PopularMoviesAPI = () => {
   const tmdbAPI = process.env.NEXT_PUBLIC_APIKEY;
-  const IMG_URL = "https://image.tmdb.org/t/p/original";
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [genres, setGenres] = useState({});
+
+  const fetchGenres = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${tmdbAPI}&language=en-US`
+    );
+    if (response.status === 200) {
+      const data = await response.json();
+      const genres = data.genres.reduce((acc, genre) => {
+        acc[genre.id] = genre.name;
+        return acc;
+      }, {});
+      setGenres(genres);
+    }
+  };
 
   const fetchMovies = async (page) => {
     const response = await fetch(
-      `https://api.themoviedb.org/3/trending/movie/day?api_key=${tmdbAPI}&page=&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}`
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=${tmdbAPI}&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}`
     );
     if (response.status === 200) {
       const data = await response.json();
@@ -25,6 +39,7 @@ const PopularMoviesAPI = async () => {
   };
 
   useEffect(() => {
+    fetchGenres();
     fetchMovies(currentPage);
   }, [currentPage]);
 
@@ -48,7 +63,14 @@ const PopularMoviesAPI = async () => {
       <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3">
         {movies.length > 0 ? (
           movies.map((movie, id) => (
-            <Card key={id} item={movie} media_type="movie" />
+            <Card
+              key={id}
+              item={{
+                ...movie,
+                genres: movie.genre_ids.map((id) => genres[id]),
+              }}
+              media_type="movie"
+            />
           ))
         ) : (
           <h1 className="text-3xl font-bold text-center">No Movies Found</h1>
@@ -99,5 +121,3 @@ const PopularMoviesAPI = async () => {
 };
 
 export default PopularMoviesAPI;
-
-// Today Movies API

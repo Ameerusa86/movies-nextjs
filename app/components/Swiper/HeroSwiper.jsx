@@ -1,21 +1,36 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/css/autoplay";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import axios from "axios";
-import "./HeroSwiper.css";
-import { Autoplay, Pagination, Navigation } from "swiper";
 import Image from "next/image";
-import SearchBox from "../Search/Search";
-import { AiFillPlayCircle } from "react-icons/ai";
+import { Autoplay, Navigation, Pagination } from "swiper";
 
-export default function HeroSwiper({ endpoint, apiKey }) {
+const HeroSwiper = ({ endpoint, apiKey }) => {
   const [data, setData] = useState([]);
+  const [error, setError] = useState(null);
+  const [genres, setGenres] = useState({});
 
   useEffect(() => {
+    async function fetchGenres() {
+      try {
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`
+        );
+        const genres = response.data.genres.reduce((acc, genre) => {
+          acc[genre.id] = genre.name;
+          return acc;
+        }, {});
+        setGenres(genres);
+      } catch (error) {
+        console.error("Error fetching genres:", error);
+      }
+    }
+
     async function fetchData() {
       try {
         const response = await axios.get(endpoint, {
@@ -25,80 +40,78 @@ export default function HeroSwiper({ endpoint, apiKey }) {
         });
         setData(response.data.results);
       } catch (error) {
-        console.error(error);
+        setError(error);
+        console.error("Error fetching data:", error);
       }
     }
 
+    fetchGenres();
     fetchData();
   }, [endpoint, apiKey]);
 
-  const progressCircle = useRef(null);
-  const progressContent = useRef(null);
-  const onAutoplayTimeLeft = (s, time, progress) => {
-    if (progressCircle.current && progressContent.current) {
-      progressCircle.current.style.setProperty("--progress", 1 - progress);
-      progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-    }
-  };
+  if (error) {
+    return <div className="text-red-500">Failed to load data.</div>;
+  }
 
   return (
-    <>
-      <Swiper
-        // spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 5500,
-        }}
-        pagination={{
-          clickable: true,
-          dynamicBullets: true,
-        }}
-        navigation={true}
-        loop={true}
-        slidesPerView={1}
-        modules={[Autoplay, Pagination, Navigation]}
-        onAutoplayTimeLeft={onAutoplayTimeLeft}
-        className="relative h-auto w-auto"
-      >
-        <SearchBox />
-        {data.map((item, index) => (
-          <React.Fragment key={index}>
-            <SwiperSlide className="">
-              <img
-                className="relative h-auto w-auto"
-                src={
-                  window.innerWidth < 750
-                    ? `https://image.tmdb.org/t/p/original${item.poster_path}`
-                    : `https://image.tmdb.org/t/p/original${item.backdrop_path}`
-                }
-                alt={item.title}
-              />
-              <div className="absolute rounded-xl drop-shadow-md bg-gray-800 bg-opacity-40 border border-white-500 z-auto xs:bottom-[150px] sm:left-4 xl:max-w-xl lg:max-w-md sm:max-w-sm sm:p-4 lg:bottom-10 left-10">
-                <h1 className="text-4xl mb-4 font-bold text-amber-600">
+    <Swiper
+      modules={[Autoplay, Navigation, Pagination]}
+      autoplay={{ delay: 5000, disableOnInteraction: false }}
+      navigation={{
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      }}
+      pagination={{ clickable: true }}
+      loop
+      className="w-full h-screen overflow-hidden cursor-pointer"
+    >
+      {data.map((item) => (
+        <SwiperSlide key={item.id}>
+          <div className="relative h-screen">
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black flex items-center p-16">
+              <div className="text-white space-y-6 max-w-lg drop-shadow-lg">
+                <div className="flex items-center space-x-3">
+                  <span className="bg-yellow-600 text-white font-bold px-2 py-1 rounded">
+                    Release Date:
+                  </span>
+                  <span className="bg-gray-800 text-white font-bold px-2 py-1 rounded">
+                    {item.release_date || item.first_air_date}
+                  </span>
+                </div>
+                <h1 className="xl:text-6xl lg:text-5xl md:text-4xl sm:text-3xl font-bold">
                   {item.title || item.name}
                 </h1>
-                <h1 className="text-white text-xs px-4 line-clamp-3 ">
+                <p className="lg:text-lg md:text-md sm:text-sm">
                   {item.overview}
-                </h1>
-                <h1 className="text-white text-sm md:text-base px-4">
-                  <span className="text-amber-600 text-md">Release Date: </span>
-                  {item.release_date}
-                </h1>
-                <button className="flex items-center bg-amber-700 px-3 py-1 rounded-lg">
-                  <AiFillPlayCircle className="h-4 w-4 text-white md:h-7 md:w-7" />{" "}
-                  Play Trailer
-                </button>
+                </p>
+                <div className="flex items-center space-x-3">
+                  <span className="bg-gray-800 text-white font-bold px-2 py-1 rounded">
+                    TV-MA
+                  </span>
+                  <span className="flex items-center space-x-1">
+                    <span className="bg-gray-800 text-white font-bold px-2 py-1 rounded">
+                      ⭐ {Math.floor(item.vote_average)}
+                    </span>
+                  </span>
+                  <span className="uppercase">{item.media_type}</span>
+                  {item.genre_ids.map((id) => (
+                    <span key={id}>{genres[id]}</span>
+                  ))}
+                </div>
               </div>
-            </SwiperSlide>
-            <div className="autoplay-progress" slot="container-end">
-              <svg viewBox="0 0 48 48" ref={progressCircle}>
-                <circle cx="24" cy="24" r="20"></circle>
-              </svg>
-              <span ref={progressContent}></span>
             </div>
-          </React.Fragment>
-        ))}
-      </Swiper>
-    </>
+            <Image
+              width={1440}
+              height={600}
+              src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+              alt={item.title || item.name}
+              className="object-cover w-full h-full"
+            />
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
-}
+};
+
+export default HeroSwiper;
