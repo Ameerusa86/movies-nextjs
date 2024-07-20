@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
+import "swiper/css/navigation";
+import { Pagination, Navigation } from "swiper";
 import axios from "axios";
 import Image from "next/image";
 
@@ -35,41 +36,63 @@ const CastSwiper = ({ endpoint, apiKey, onDataChange }) => {
 
   return (
     <>
-      <h1 className="mx-auto font-bold text-xl px-8 mt-4 mb-4">Cast</h1>
+      <h1 className="mx-auto font-bold text-2xl px-8 mt-8 mb-4 text-white">
+        Cast
+      </h1>
       <Swiper
-        slidesPerView={8}
-        spaceBetween={3}
-        centeredSlides={true}
-        modules={[Pagination]}
-        className=""
+        slidesPerView={6}
+        spaceBetween={20}
+        centeredSlides={false}
+        modules={[Pagination, Navigation]}
+        pagination={{ clickable: true }}
+        navigation
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 20,
+          },
+          1280: {
+            slidesPerView: 6,
+            spaceBetween: 20,
+          },
+        }}
+        className="cast-swiper"
       >
-        <div className="swiper-wrapper">
-          {data.slice(0, 10).map((item, id) => (
-            <SwiperSlide key={id} className="swiper-slide">
-              <>
-                <Image
-                  src={IMG_URL + item.profile_path}
-                  alt={item.name}
-                  width={200}
-                  height={300}
-                  className="rounded-lg"
-                  style={{
-                    maxWidth: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-
-                <div className="text-center">
-                  <h3 className="sm:text-xs lg:text-xl mt-2">{item.name}</h3>
-                  <p className="sm:text-sm text-gray-500 lg:text-md">
+        {data.slice(0, 12).map((item, id) => (
+          <SwiperSlide key={id} className="swiper-slide">
+            <div className="relative group w-full h-full cursor-pointer">
+              <Image
+                src={IMG_URL + item.profile_path}
+                alt={item.name}
+                layout="responsive"
+                width={200}
+                height={300}
+                className="rounded-lg shadow-lg group-hover:shadow-2xl transition-shadow duration-300"
+                style={{
+                  objectFit: "cover",
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                <div className="absolute bottom-0 left-0 w-full p-4">
+                  <h3 className="text-sm md:text-base lg:text-lg font-semibold text-white">
+                    {item.name}
+                  </h3>
+                  <p className="text-xs md:text-sm text-gray-300">
                     {item.character}
                   </p>
                 </div>
-              </>
-            </SwiperSlide>
-          ))}
-        </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );
