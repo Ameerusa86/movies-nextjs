@@ -6,11 +6,11 @@ export default function Home() {
   return (
     <>
       <MainSwiper />
-      <h1 className="text-center text-4xl mb-5 font-bold text-white">
+      <h1 className="text-left text-4xl ml-10 mt-10 mb-10 font-bold text-white">
         Trending Movies
       </h1>
       <MoviesSwiper />
-      <h1 className="text-center text-4xl mb-5 font-bold text-white mt-5">
+      <h1 className="text-left text-4xl ml-10 mt-10 mb-10 font-bold text-white">
         Latest TV Shows
       </h1>
 

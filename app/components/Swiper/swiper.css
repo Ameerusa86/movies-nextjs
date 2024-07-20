@@ -1,120 +1,119 @@
 .circle-rate {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    margin-left: 2rem;
-    margin-top: -2rem;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin-left: 2rem;
+  margin-top: -2rem;
 }
 
 .circle-rate::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: #fff;
-    opacity: 0.2;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.2;
 }
 
 .circle-chart {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
 }
 
 .circle-chart__circle {
-    fill: none;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-dasharray: 0, 100;
-    stroke: #4eb04b;
-    animation: circle-chart-fill 1s forwards;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 0, 100;
+  stroke: #4eb04b;
+  animation: circle-chart-fill 1s forwards;
 }
 
 @keyframes circle-chart-fill {
-    from {
-        stroke-dasharray: 0, 100;
-    }
+  from {
+    stroke-dasharray: 0, 100;
+  }
 
-    to {
-        stroke-dasharray: var(--percentage), 100;
-    }
+  to {
+    stroke-dasharray: var(--percentage), 100;
+  }
 }
 
 .card {
-    width: 450px;
-    height: 665px;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 8px solid #fff;
-    position: relative;
+  width: 450px;
+  height: 665px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 8px solid #fff;
+  position: relative;
 }
 
 .card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 .card-body {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: -100%;
-    color: #fff;
-    position: absolute;
-    background-color: #1f3d4d47;
-    backdrop-filter: blur(5px);
-    border-radius: 20px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: 1.5s;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: -100%;
+  color: #fff;
+  position: absolute;
+  background-color: #1f3d4d47;
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 1.5s;
 }
 
 .card:hover .card-body {
-    right: 0;
+  right: 0;
 }
 
 .card-title {
-    text-transform: uppercase;
-    font-size: 50px;
-    font-weight: 500;
+  /* text-transform: uppercase; */
+  font-size: 30px;
+  font-weight: 500;
 }
 
 .card-sub-title {
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 2px;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 2px;
 }
 
 @media (max-width: 1830px) {
-    .card {
-        width: calc(100% - 10px);
-        height: calc(100% - 10px);
-    }
-
+  .card {
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+  }
 }
 
-@media (min-width:1024px) and (max-width:1400px) {
-    .card-title {
-        font-size: 30px;
-    }
+@media (min-width: 1024px) and (max-width: 1400px) {
+  .card-title {
+    font-size: 10px;
+  }
 }
-@media (min-width:768px) and (max-width:1024px) {
-    .card-title {
-        font-size: 25px;
-        margin-bottom: 10px;
-    }
-    .card-sub-title{
-        font-size: 8px;
-    }
+@media (min-width: 768px) and (max-width: 1024px) {
+  .card-title {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .card-sub-title {
+    font-size: 8px;
+  }
 }

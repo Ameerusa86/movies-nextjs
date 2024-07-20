@@ -2,13 +2,11 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "../../../public/Asset/logo.png";
-import { HiOutlineMenu } from "react-icons/hi";
-import Link from "next/link";
-import { FaUserAlt, FaSearch } from "react-icons/fa";
+import { HiOutlineMenu, HiOutlineMoon } from "react-icons/hi";
+import { FaSearch } from "react-icons/fa";
 import { WiDaySunny } from "react-icons/wi";
-import { HiOutlineMoon } from "react-icons/hi";
+import Link from "next/link";
 import ProfileIcon from "../ProfileIcon";
-import SearchBox from "../Search/Search";
 
 export default function TopNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,8 +15,7 @@ export default function TopNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isTop = window.scrollY === 10;
-      setIsScrolled(!isTop);
+      setIsScrolled(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -37,111 +34,138 @@ export default function TopNavbar() {
 
   return (
     <nav
-      className={`bg-white	border-gray-200 tracking-widest	z-50 ${
-        isScrolled ? "sticky top-0 shadow-md" : ""
+      className={` w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-gray-800 shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-2xl mx-auto flex items-center justify-between p-4">
         <Link href="/" className="flex items-center">
-          <Image src={logo} alt="Logo" width={80} height={80} />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-black hover:text-amber-600">
+          <Image src={logo} alt="Logo" width={50} height={50} />
+          <span className="ml-3 text-2xl font-semibold text-gray-300">
             Cinema Universe
           </span>
         </Link>
-        <div className="flex items-center justify-end  lg:flex"></div>
-        <div className="flex items-center">
+        <div className="hidden lg:flex items-center space-x-8">
+          <Link
+            href="/"
+            className="text-gray-300 hover:text-yellow-600 transition-colors duration-300"
+          >
+            HOME
+          </Link>
+          <Link
+            href="/about"
+            className="text-gray-300 hover:text-yellow-600 transition-colors duration-300"
+          >
+            ABOUT
+          </Link>
+          <Link
+            href="/movie"
+            className="text-gray-300 hover:text-yellow-600 transition-colors duration-300"
+          >
+            MOVIES
+          </Link>
+          <Link
+            href="/tv"
+            className="text-gray-300 hover:text-yellow-600 transition-colors duration-300"
+          >
+            TV SHOWS
+          </Link>
+          <Link
+            href="/contact"
+            className="text-gray-300 hover:text-yellow-600 transition-colors duration-300"
+          >
+            CONTACT
+          </Link>
+          <Link
+            href=""
+            className="text-gray-300 hover:text-yellow-600 transition-colors duration-300"
+          >
+            {/* <FaSearch /> */}
+          </Link>
+          {/* <ProfileIcon /> */}
+          {/* <button
+            className="text-gray-300 hover:text-yellow-600 transition-colors duration-300"
+            onClick={() => setNightMode(!nightMode)}
+          >
+            {nightMode ? <WiDaySunny size={25} /> : <HiOutlineMoon size={25} />}
+          </button> */}
+        </div>
+        <div className="lg:hidden flex items-center">
           <button
             type="button"
-            className="inline-flex items-center p-2 ml-1 text-sm text-black hover:text-white rounded-lg lg:hidden hover:bg-amber-600"
-            aria-controls="mobile-menu-2"
-            aria-expanded={isMobileMenuOpen ? "true" : "false"}
+            className="p-2 text-gray-300 rounded-lg hover:bg-yellow-600 hover:text-white transition-all duration-300"
             onClick={toggleMobileMenu}
           >
-            <span className="sr-only">Open main menu</span>
             <HiOutlineMenu size={25} />
           </button>
         </div>
-        {/* Mobile Menu */}
-        <div
-          className={`items-center justify-between w-full lg:flex lg:w-auto  transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? "block" : "hidden"
-          }`}
-          id="mobile-menu-2"
-        >
-          <ul className=" flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white ">
-            <li className="">
-              <Link
-                href="/"
-                className=" block py-2 pl-3 pr-4 text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600  md:p-0 "
-                aria-current="page"
-                onClick={handleLinkClick}
-              >
-                HOME
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className="block py-2 pl-3 pr-4 text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600 md:p-0"
-                aria-current="page"
-                onClick={handleLinkClick}
-              >
-                ABOUT
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/movie"
-                className="block py-2 pl-3 pr-4 text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600 md:p-0 "
-                aria-current="page"
-                onClick={handleLinkClick}
-              >
-                MOVIES
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/tv"
-                className="block py-2 pl-3 pr-4  text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600 md:p-0 "
-                aria-current="page"
-                onClick={handleLinkClick}
-              >
-                TV SHOWS
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className="block py-2 pl-3 pr-4  text-black rounded md:bg-transparent active:text-amber-600 hover:text-amber-600 md:p-0 "
-                aria-current="page"
-                onClick={handleLinkClick}
-              >
-                CONTACT
-              </Link>
-            </li>
-            <li className="flex items-center justify-center">
-              <Link
-                href=""
-                className="text-black active:text-amber-600 hover:text-amber-600 md:p-0 "
-                aria-current="page"
-                onClick={handleLinkClick}
-              >
-                <FaSearch className="" />
-              </Link>
-            </li>
-            <li className="flex items-center justify-center">
-              {/* <Link
-                href="/register"
-                className="text-black active:text-amber-600 hover:text-amber-600 md:p-0 "
-                aria-current="page"
-                onClick={handleLinkClick}
-              >
-                <FaUserAlt className="" />
-              </Link> */}
-              <ProfileIcon />
-            </li>
-            <li
-              className="flex items-center justify-center text-black active:text-amber-600 hover:text-amber-600 md:p-0"
+      </div>
+      <div
+        className={`lg:hidden transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? "block" : "hidden"
+        }`}
+      >
+        <ul className="flex flex-col items-center space-y-4 bg-white shadow-lg rounded-lg p-4">
+          <li>
+            <Link
+              href="/"
+              className="text-gray-800 hover:text-yellow-600 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              HOME
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about"
+              className="text-gray-800 hover:text-yellow-600 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              ABOUT
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/movie"
+              className="text-gray-800 hover:text-yellow-600 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              MOVIES
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/tv"
+              className="text-gray-800 hover:text-yellow-600 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              TV SHOWS
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              className="text-gray-800 hover:text-yellow-600 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              CONTACT
+            </Link>
+          </li>
+          {/* <li>
+            <Link
+              href=""
+              className="text-gray-800 hover:text-yellow-600 transition-colors duration-300"
+              onClick={handleLinkClick}
+            >
+              <FaSearch />
+            </Link>
+          </li>
+          <li>
+            <ProfileIcon />
+          </li>
+          <li>
+            <button
+              className="text-gray-800 hover:text-yellow-600 transition-colors duration-300"
               onClick={() => setNightMode(!nightMode)}
             >
               {nightMode ? (
@@ -149,9 +173,9 @@ export default function TopNavbar() {
               ) : (
                 <HiOutlineMoon size={25} />
               )}
-            </li>
-          </ul>
-        </div>
+            </button>
+          </li> */}
+        </ul>
       </div>
     </nav>
   );

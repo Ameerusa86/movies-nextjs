@@ -50,8 +50,8 @@ const ReusableSwiper = ({ endpoint, apiKey }) => {
             spaceBetween: 30,
           },
           1024: {
-            slidesPerView: 4,
-            spaceBetween: 30,
+            slidesPerView: 5,
+            spaceBetween: 20,
           },
         }}
       >
@@ -95,7 +95,9 @@ const ReusableSwiper = ({ endpoint, apiKey }) => {
                 </div>
                 <div className="card-body text-center">
                   <Link href={`/${media_type}/${id}`}>
-                    <h2 className="card-title lg:text-md">{item.title || item.name}</h2>
+                    <h2 className="card-title lg:text-md">
+                      {item.title || item.name}
+                    </h2>
                   </Link>
                   {/* <p className="card-info">{item.overview}</p> */}
                 </div>
