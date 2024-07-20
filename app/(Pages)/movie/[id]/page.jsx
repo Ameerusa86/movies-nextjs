@@ -1,6 +1,7 @@
 import DataCastSwiper from "@/app/components/dataSwiper/DataCastSwiper";
 import Image from "next/image";
 import React from "react";
+import "./styles.css";
 
 const DetailsPage = async ({ params }) => {
   const IMG_URL = "https://image.tmdb.org/t/p/original";
@@ -18,7 +19,6 @@ const DetailsPage = async ({ params }) => {
     release_date,
     poster_path,
     backdrop_path,
-    first_air_date,
     original_language,
     budget,
     revenue,
@@ -26,84 +26,64 @@ const DetailsPage = async ({ params }) => {
   const imageUrl = IMG_URL + (poster_path || backdrop_path);
   const imageBackdrop = IMG_URL + backdrop_path;
 
-  const year = release_date
-    ? new Date(release_date).getFullYear()
-    : new Date(first_air_date).getFullYear();
+  const year = release_date ? new Date(release_date).getFullYear() : "N/A";
 
   return (
     <>
       <div
-        className="flex place-content-center w-full h-screen relative z-10"
+        className="relative w-full h-screen text-white"
         style={{
           backgroundImage: `url(${imageBackdrop})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
-          color: "white",
-          textAlign: "center",
         }}
       >
-        <div className="absolute inset-0 bg-black opacity-80 "></div>
-
-        <div className="md:flex md:justify-center md:items-center z-50 px-8">
-          <div className="mr-6">
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80"></div>
+        <div className="relative z-20 flex flex-col items-center justify-center h-full px-6 py-8 md:flex-row md:justify-start">
+          <div className="animate-fade-in mb-6 md:mb-0 md:mr-8">
             <Image
               src={imageUrl}
               alt={title}
               width={300}
-              height={100}
-              className="rounded-lg sm:mx-auto"
+              height={450}
+              className="rounded-lg shadow-lg"
               style={{
                 objectFit: "cover",
-                objectPosition: "center",
-                margin: "1rem auto",
               }}
             />
           </div>
-          <div className="w-full p-2 text-left">
-            <h1 className="md:text-3xl font-bold md:leading-loose">
-              {title} ({year})
+          <div className="text-left max-w-2xl animate-fade-in-delayed p-6 bg-black bg-opacity-50 rounded-lg">
+            <h1 className="text-4xl font-bold mb-4 text-amber-400">
+              {title} <span className="text-white">({year})</span>
             </h1>
-            <h3 className="sm:text-xs md:text-xl">
-              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs ">
-                Language:{" "}
-              </span>
-              : {original_language}
-            </h3>
-
-            <h3 className="sm:text-xs md:text-xl">
-              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs">
-                Overview:{" "}
-              </span>
+            <p className="text-lg mb-4">
+              <span className="font-bold text-amber-400">Language:</span>{" "}
+              {original_language}
+            </p>
+            <p className="text-lg mb-4">
+              <span className="font-bold text-amber-400">Overview:</span>{" "}
               {overview}
-            </h3>
-
-            <h3 className="sm:text-xs md:text-xl">
-              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs ">
-                Rating:{" "}
-              </span>
-              {Math.round(vote_average) === null
-                ? "N/A"
-                : Math.round(vote_average)}
-            </h3>
-            <h3 className="sm:text-xs md:text-xl">
-              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs ">
-                Budget:{" "}
-              </span>
-              : {budget.toLocaleString()} USD
-            </h3>
-            <h3 className="sm:text-xs md:text-xl">
-              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs ">
-                Revenue:{" "}
-              </span>
-              : {revenue.toLocaleString()} USD
-            </h3>
+            </p>
+            <p className="text-lg mb-4 text-left">
+              <span className="font-bold text-amber-400">Rating:</span>{" "}
+              {vote_average ? vote_average.toFixed(1) : "N/A"}
+            </p>
+            <p className="text-lg mb-4 text-left">
+              <span className="font-bold text-amber-400">Budget:</span> $
+              {budget.toLocaleString()}
+            </p>
+            <p className="text-lg mb-4 text-left">
+              <span className="font-bold text-amber-400">Revenue:</span> $
+              {revenue.toLocaleString()}
+            </p>
           </div>
         </div>
       </div>
-
-      <DataCastSwiper id={id} mediaType="movie" />
+      <div className="py-8 bg-gray-900">
+        <DataCastSwiper id={id} mediaType="movie" />
+      </div>
     </>
   );
 };

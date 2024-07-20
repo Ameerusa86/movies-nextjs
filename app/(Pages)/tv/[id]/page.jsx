@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import DataCastSwiper from "@/app/components/dataSwiper/DataCastSwiper";
+import "./styles.css";
 
 const TvShowsDetails = async ({ params }) => {
   const { id } = params;
@@ -10,7 +11,6 @@ const TvShowsDetails = async ({ params }) => {
   );
   const data = await res.json();
   const {
-    title,
     name,
     vote_average,
     overview,
@@ -29,62 +29,57 @@ const TvShowsDetails = async ({ params }) => {
   return (
     <>
       <div
-        className="flex place-content-center w-full h-screen relative z-10"
+        className="relative w-full h-screen text-white"
         style={{
           backgroundImage: `url(${imageBackdrop})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
-          color: "white",
-          textAlign: "center",
         }}
       >
-        <div className="absolute inset-0 bg-black opacity-60"></div>
-
-        <div className="md:flex md:justify-center md:items-center z-50 px-8">
-          <div className="mr-6">
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80"></div>
+        <div className="relative z-20 flex flex-col items-center justify-center h-full px-6 py-8 md:flex-row md:justify-start">
+          <div className="animate-fade-in mb-6 md:mb-0 md:mr-8">
             <Image
               src={imageUrl}
-              alt={title}
+              alt={name}
               width={300}
-              height={100}
-              className="rounded-lg sm:mx-auto"
+              height={450}
+              className="rounded-lg shadow-lg"
               style={{
                 objectFit: "cover",
-                objectPosition: "center",
-                margin: "1rem auto",
               }}
             />
           </div>
-          <div className="w-full p-2 text-left">
-            <h1 className="md:text-3xl font-bold md:leading-loose">
-              {name} ({year})
+          <div className="text-left max-w-2xl animate-fade-in-delayed p-6 bg-black bg-opacity-50 rounded-lg">
+            <h1 className="text-4xl font-bold mb-4 text-amber-400">
+              {name} <span className="text-white">({year})</span>
             </h1>
-            <h3 className="sm:text-xs md:text-xl">
-              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs">
-                Overview:{" "}
-              </span>
+            <p className="text-lg mb-4">
+              <span className="font-bold text-amber-400 text-left">
+                Overview:
+              </span>{" "}
               {overview}
-            </h3>
-            <h3 className="sm:text-xs md:text-xl">
-              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs">
-                Date Released:{" "}
-              </span>
+            </p>
+            <p className="text-lg mb-4">
+              <span className="font-bold text-amber-400 text-left">
+                Date Released:
+              </span>{" "}
               {release_date || first_air_date}
-            </h3>
-            <h3 className="sm:text-xs md:text-xl">
-              <span className="text-amber-600 md:text-xl font-bold md:leading-loose text-left sm:text-xs">
-                Rating:{" "}
-              </span>
-              {Math.round(vote_average) === null
-                ? "N/A"
-                : Math.round(vote_average)}
-            </h3>
+            </p>
+            <p className="text-lg mb-4">
+              <span className="font-bold text-amber-400 text-left">
+                Rating:
+              </span>{" "}
+              {vote_average ? vote_average.toFixed(1) : "N/A"}
+            </p>
           </div>
         </div>
       </div>
-      <DataCastSwiper id={id} mediaType="tv" />
+      <div className="py-8 bg-gray-900">
+        <DataCastSwiper id={id} mediaType="tv" />
+      </div>
     </>
   );
 };
