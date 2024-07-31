@@ -10,7 +10,7 @@ const Navbar = () => {
   const links = [
     { href: "/", title: "Home" },
     { href: "/about", title: "About" },
-    { href: "/movies", title: "Movies" },
+    { href: "/movie", title: "Movies" },
     { href: "/tv", title: "TV Shows" },
     { href: "/contact", title: "Contact" },
   ];
