@@ -1,9 +1,9 @@
 import { NextAuthProvider } from "@/lib/provider";
 import FooterComponent from "./components/Footer/Footer";
-import TopNavbar from "./components/Navbar/TopNavbar";
 import "./globals.css";
 // import { Righteous } from "next/font/google";
 import { Barlow } from "next/font/google";
+import Navbar from "./components/Navbar/Navbar";
 
 // const inter = Inter({ subsets: ['latin'] })
 
@@ -31,12 +31,10 @@ export default function RootLayout({ children }) {
       <body className={"min-h-screen " + barlow.className}>
         <NextAuthProvider>
           <header className="sticky top-0 z-50 text-3xl sm:text-md md:text-xl lg:text-lg xl:text-xl lg:justify-self-start">
-            <TopNavbar />
+            <Navbar />
           </header>
           {children}
-          <footer>
-            <FooterComponent />
-          </footer>
+          <FooterComponent />
         </NextAuthProvider>
       </body>
     </html>

@@ -1,164 +1,94 @@
 "use client";
 
-import React, { useState } from "react";
-// Icons
-import {
-  AiOutlineArrowLeft,
-  AiOutlineSearch,
-  AiOutlineHome,
-} from "react-icons/ai";
-import { BsInfoCircle } from "react-icons/bs";
-import { GiFilmStrip } from "react-icons/gi";
-import { MdOutlineSlideshow } from "react-icons/md";
-import { RxEnvelopeClosed } from "react-icons/rx";
-// Components
 import Image from "next/image";
-import logo from "../../../public/Asset/logo.png";
-
-// Styles
-import "./Navbar.css";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import logo from "@/public/Asset/logo.png";
+import { HiOutlineMenu } from "react-icons/hi";
 
 const Navbar = () => {
-  const [open, setOpen] = useState(true);
-  const [search, setSearch] = useState("");
-
-  const router = useRouter();
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!search) return;
-    router.push(`/search/${search}`);
-  }
-
-  const sideMenuItems = [
-    {
-      name: "Home",
-      link: "/",
-      icon: <AiOutlineHome />,
-    },
-    {
-      name: "About",
-      link: "/about",
-      icon: <BsInfoCircle />,
-    },
-    {
-      name: "Movies",
-      link: "/movie",
-      icon: <GiFilmStrip />,
-    },
-    {
-      name: "TV Shows",
-      link: "/tv",
-      icon: <MdOutlineSlideshow />,
-    },
-    {
-      name: "Contact Me",
-      link: "/contact",
-      icon: <RxEnvelopeClosed />,
-    },
+  const links = [
+    { href: "/", title: "Home" },
+    { href: "/about", title: "About" },
+    { href: "/movies", title: "Movies" },
+    { href: "/tv", title: "TV Shows" },
+    { href: "/contact", title: "Contact" },
   ];
-  return (
-    <div className="flex fixed z-30">
-      <div
-        className={`bg-dark-purple h-screen p-5 pt-8 ${
-          open ? "w-72" : "w-20"
-        } ${open ? "opacity-70" : "opacity-100"}  relative duration-500`}
-      >
-        <AiOutlineArrowLeft
-          className={`bg-white text-dark-purple text-3xl rounded-full absolute -right-3 top-4 border border-dark-purple cursor-pointer ${
-            !open && "rotate-180"
-          } duration-500`}
-          onClick={() => setOpen(!open)}
-        />
-        <div className="inline-flex items-center justify-center">
-          <Image
-            src={logo}
-            width={120}
-            height={120}
-            alt="Logo"
-            className={`cursor-pointer ml-4 block float-left duration-500 ${
-              open && "rotate-[360deg]"
-            }`}
-          />
-          <h1
-            className={`text-white origin-left font-medium text-xl duration-300 ${
-              !open && "scale-0"
-            }`}
-          >
-            Cinema Universe
-          </h1>
-        </div>
-        <div
-          className={`flex items-center rounded-md mt-6 duration-500 ${
-            !open ? "px-2.5" : "px-4"
-          } py-2`}
-        >
-          <AiOutlineSearch
-            className={`text-white text-lg block float-left cursor-pointer duration-500 ${
-              open && "hidden"
-            }`}
-            onClick={() => setOpen(!open)}
-          />
 
-          <div
-            className={`form__group field text-base bg-transparent w-full text-white focus:outline-none ${
-              !open && "hidden"
-            } `}
-          >
-            <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                className="form__field"
-                placeholder="Search"
-                required
-                onChange={(e) => setSearch(e.target.value)}
-                value={search}
-              />
-            </form>
-            <label for="name" className="form__label">
-              Search
-            </label>
-          </div>
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handlelinkClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <nav
+      className={` w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-gray-800 shadow-lg" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-screen-2xl mx-auto flex items-center justify-between p-4">
+        <Link href={"/"} className="flex items-center">
+          <Image src={logo} width={50} height={50} alt="Logo" />
+          <span className="ml-3 text-2xl font-semibold text-gray-300">
+            Cinema App
+          </span>
+        </Link>
+        <div className="hidden lg:flex items-center space-x-8">
+          {links.map((link) => (
+            <Link
+              href={link.href}
+              key={link.title}
+              className="text-gray-300 hover:text-yellow-600 transition-colors duration-300"
+            >
+              {link.title}
+            </Link>
+          ))}
         </div>
-        <div>
-          <ul className="pt-8">
-            {sideMenuItems.map((item, index) => (
-              <>
-                <Link href={item.link}>
-                  <li
-                    onClick={() => setOpen(!open)}
-                    key={index}
-                    className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2"
-                  >
-                    <span className="text-3xl block float-left ">
-                      {item.icon}
-                    </span>
-                    <a
-                      href={item.link}
-                      className={`text-white transition duration-500 ease-in-out ${
-                        !open && "opacity-0"
-                      }`}
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                </Link>
-              </>
-            ))}
-          </ul>
-          <div className="flex flex-col gap-y-4 items-center justify-center mt-4">
-            <button>
-              <span>Login</span>
-            </button>
-            <button>
-              <span>Sign Up</span>
-            </button>
-          </div>
+        <div className="lg:hidden flex items-center">
+          <button
+            className="p-2 text-gray-300 hover:bg-yellow-600 hover:text-white transition-all duration-300"
+            onClick={toggleMobileMenu}
+          >
+            <HiOutlineMenu size={25} />
+          </button>
         </div>
       </div>
-    </div>
+      <div
+        className={`lg:hidden transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? "block" : "hidden"
+        }`}
+      >
+        <div className="flex flex-col items-center space-y-4 bg-white shadow-lg rounded-lg p-4">
+          {links.map((link) => (
+            <Link
+              className="text-gray-800 hover:text-yellow-600 transition-colors duration-300"
+              href={link.href}
+              key={link.title}
+              onClick={handlelinkClick}
+            >
+              {link.title}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </nav>
   );
 };
 
